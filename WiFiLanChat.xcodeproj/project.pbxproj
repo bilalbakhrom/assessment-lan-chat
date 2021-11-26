@@ -17,6 +17,8 @@
 		1307B5E02750E8FC003EEFE2 /* WiFiLanChatUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1307B5DF2750E8FC003EEFE2 /* WiFiLanChatUITestsLaunchTests.swift */; };
 		1353F28D2751524A0036001F /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F28C2751524A0036001F /* BaseViewController.swift */; };
 		1353F292275155130036001F /* Launcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F291275155130036001F /* Launcher.swift */; };
+		1353F296275157660036001F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F295275157660036001F /* SearchViewController.swift */; };
+		1353F2982751576E0036001F /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F2972751576E0036001F /* ChatRoomViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		1307B5DF2750E8FC003EEFE2 /* WiFiLanChatUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiLanChatUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		1353F28C2751524A0036001F /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		1353F291275155130036001F /* Launcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Launcher.swift; sourceTree = "<group>"; };
+		1353F295275157660036001F /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		1353F2972751576E0036001F /* ChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +154,8 @@
 			isa = PBXGroup;
 			children = (
 				1353F290275152A00036001F /* Start */,
+				1353F293275157500036001F /* Search */,
+				1353F294275157570036001F /* ChatRoom */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -160,6 +166,22 @@
 				1307B5C02750E8FA003EEFE2 /* StartViewController.swift */,
 			);
 			path = Start;
+			sourceTree = "<group>";
+		};
+		1353F293275157500036001F /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				1353F295275157660036001F /* SearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		1353F294275157570036001F /* ChatRoom */ = {
+			isa = PBXGroup;
+			children = (
+				1353F2972751576E0036001F /* ChatRoomViewController.swift */,
+			);
+			path = ChatRoom;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,6 +314,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1353F2982751576E0036001F /* ChatRoomViewController.swift in Sources */,
+				1353F296275157660036001F /* SearchViewController.swift in Sources */,
 				1307B5C12750E8FA003EEFE2 /* StartViewController.swift in Sources */,
 				1353F28D2751524A0036001F /* BaseViewController.swift in Sources */,
 				1353F292275155130036001F /* Launcher.swift in Sources */,
