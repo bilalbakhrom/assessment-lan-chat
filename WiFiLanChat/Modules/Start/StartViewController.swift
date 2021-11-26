@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  StartViewController.swift
 //  WiFiLanChat
 //
 //  Created by Bilol Mamadjanov on 26/11/21.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class StartViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

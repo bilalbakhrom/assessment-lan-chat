@@ -9,13 +9,14 @@
 /* Begin PBXBuildFile section */
 		1307B5BD2750E8FA003EEFE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1307B5BC2750E8FA003EEFE2 /* AppDelegate.swift */; };
 		1307B5BF2750E8FA003EEFE2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1307B5BE2750E8FA003EEFE2 /* SceneDelegate.swift */; };
-		1307B5C12750E8FA003EEFE2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1307B5C02750E8FA003EEFE2 /* ViewController.swift */; };
-		1307B5C42750E8FA003EEFE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1307B5C22750E8FA003EEFE2 /* Main.storyboard */; };
+		1307B5C12750E8FA003EEFE2 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1307B5C02750E8FA003EEFE2 /* StartViewController.swift */; };
 		1307B5C62750E8FB003EEFE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1307B5C52750E8FB003EEFE2 /* Assets.xcassets */; };
 		1307B5C92750E8FB003EEFE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1307B5C72750E8FB003EEFE2 /* LaunchScreen.storyboard */; };
 		1307B5D42750E8FC003EEFE2 /* WiFiLanChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1307B5D32750E8FC003EEFE2 /* WiFiLanChatTests.swift */; };
 		1307B5DE2750E8FC003EEFE2 /* WiFiLanChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1307B5DD2750E8FC003EEFE2 /* WiFiLanChatUITests.swift */; };
 		1307B5E02750E8FC003EEFE2 /* WiFiLanChatUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1307B5DF2750E8FC003EEFE2 /* WiFiLanChatUITestsLaunchTests.swift */; };
+		1353F28D2751524A0036001F /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F28C2751524A0036001F /* BaseViewController.swift */; };
+		1353F292275155130036001F /* Launcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F291275155130036001F /* Launcher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,8 +40,7 @@
 		1307B5B92750E8FA003EEFE2 /* WiFiLanChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WiFiLanChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1307B5BC2750E8FA003EEFE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1307B5BE2750E8FA003EEFE2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1307B5C02750E8FA003EEFE2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		1307B5C32750E8FA003EEFE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1307B5C02750E8FA003EEFE2 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		1307B5C52750E8FB003EEFE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1307B5C82750E8FB003EEFE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1307B5CA2750E8FB003EEFE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +49,8 @@
 		1307B5D92750E8FC003EEFE2 /* WiFiLanChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WiFiLanChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1307B5DD2750E8FC003EEFE2 /* WiFiLanChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiLanChatUITests.swift; sourceTree = "<group>"; };
 		1307B5DF2750E8FC003EEFE2 /* WiFiLanChatUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiLanChatUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		1353F28C2751524A0036001F /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		1353F291275155130036001F /* Launcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Launcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,10 +101,9 @@
 		1307B5BB2750E8FA003EEFE2 /* WiFiLanChat */ = {
 			isa = PBXGroup;
 			children = (
-				1307B5BC2750E8FA003EEFE2 /* AppDelegate.swift */,
-				1307B5BE2750E8FA003EEFE2 /* SceneDelegate.swift */,
-				1307B5C02750E8FA003EEFE2 /* ViewController.swift */,
-				1307B5C22750E8FA003EEFE2 /* Main.storyboard */,
+				1353F28B2751523F0036001F /* Base */,
+				1353F28E275152600036001F /* Delegate */,
+				1353F28F2751529C0036001F /* Modules */,
 				1307B5C52750E8FB003EEFE2 /* Assets.xcassets */,
 				1307B5C72750E8FB003EEFE2 /* LaunchScreen.storyboard */,
 				1307B5CA2750E8FB003EEFE2 /* Info.plist */,
@@ -125,6 +126,40 @@
 				1307B5DF2750E8FC003EEFE2 /* WiFiLanChatUITestsLaunchTests.swift */,
 			);
 			path = WiFiLanChatUITests;
+			sourceTree = "<group>";
+		};
+		1353F28B2751523F0036001F /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				1353F28C2751524A0036001F /* BaseViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		1353F28E275152600036001F /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				1307B5BC2750E8FA003EEFE2 /* AppDelegate.swift */,
+				1307B5BE2750E8FA003EEFE2 /* SceneDelegate.swift */,
+				1353F291275155130036001F /* Launcher.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+		1353F28F2751529C0036001F /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				1353F290275152A00036001F /* Start */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		1353F290275152A00036001F /* Start */ = {
+			isa = PBXGroup;
+			children = (
+				1307B5C02750E8FA003EEFE2 /* StartViewController.swift */,
+			);
+			path = Start;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,7 +268,6 @@
 			files = (
 				1307B5C92750E8FB003EEFE2 /* LaunchScreen.storyboard in Resources */,
 				1307B5C62750E8FB003EEFE2 /* Assets.xcassets in Resources */,
-				1307B5C42750E8FA003EEFE2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,7 +292,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1307B5C12750E8FA003EEFE2 /* ViewController.swift in Sources */,
+				1307B5C12750E8FA003EEFE2 /* StartViewController.swift in Sources */,
+				1353F28D2751524A0036001F /* BaseViewController.swift in Sources */,
+				1353F292275155130036001F /* Launcher.swift in Sources */,
 				1307B5BD2750E8FA003EEFE2 /* AppDelegate.swift in Sources */,
 				1307B5BF2750E8FA003EEFE2 /* SceneDelegate.swift in Sources */,
 			);
@@ -297,14 +333,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1307B5C22750E8FA003EEFE2 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1307B5C32750E8FA003EEFE2 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		1307B5C72750E8FB003EEFE2 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -367,7 +395,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -422,7 +450,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -444,7 +472,7 @@
 				INFOPLIST_FILE = WiFiLanChat/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -456,7 +484,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -472,7 +500,7 @@
 				INFOPLIST_FILE = WiFiLanChat/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -484,7 +512,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
