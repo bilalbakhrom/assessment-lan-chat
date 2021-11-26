@@ -1,0 +1,629 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1307B5BD2750E8FA003EEFE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1307B5BC2750E8FA003EEFE2 /* AppDelegate.swift */; };
+		1307B5BF2750E8FA003EEFE2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1307B5BE2750E8FA003EEFE2 /* SceneDelegate.swift */; };
+		1307B5C12750E8FA003EEFE2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1307B5C02750E8FA003EEFE2 /* ViewController.swift */; };
+		1307B5C42750E8FA003EEFE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1307B5C22750E8FA003EEFE2 /* Main.storyboard */; };
+		1307B5C62750E8FB003EEFE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1307B5C52750E8FB003EEFE2 /* Assets.xcassets */; };
+		1307B5C92750E8FB003EEFE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1307B5C72750E8FB003EEFE2 /* LaunchScreen.storyboard */; };
+		1307B5D42750E8FC003EEFE2 /* WiFiLanChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1307B5D32750E8FC003EEFE2 /* WiFiLanChatTests.swift */; };
+		1307B5DE2750E8FC003EEFE2 /* WiFiLanChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1307B5DD2750E8FC003EEFE2 /* WiFiLanChatUITests.swift */; };
+		1307B5E02750E8FC003EEFE2 /* WiFiLanChatUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1307B5DF2750E8FC003EEFE2 /* WiFiLanChatUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1307B5D02750E8FC003EEFE2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1307B5B12750E8FA003EEFE2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1307B5B82750E8FA003EEFE2;
+			remoteInfo = WiFiLanChat;
+		};
+		1307B5DA2750E8FC003EEFE2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1307B5B12750E8FA003EEFE2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1307B5B82750E8FA003EEFE2;
+			remoteInfo = WiFiLanChat;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1307B5B92750E8FA003EEFE2 /* WiFiLanChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WiFiLanChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1307B5BC2750E8FA003EEFE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1307B5BE2750E8FA003EEFE2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		1307B5C02750E8FA003EEFE2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1307B5C32750E8FA003EEFE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1307B5C52750E8FB003EEFE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1307B5C82750E8FB003EEFE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1307B5CA2750E8FB003EEFE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1307B5CF2750E8FC003EEFE2 /* WiFiLanChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WiFiLanChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1307B5D32750E8FC003EEFE2 /* WiFiLanChatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiLanChatTests.swift; sourceTree = "<group>"; };
+		1307B5D92750E8FC003EEFE2 /* WiFiLanChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WiFiLanChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1307B5DD2750E8FC003EEFE2 /* WiFiLanChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiLanChatUITests.swift; sourceTree = "<group>"; };
+		1307B5DF2750E8FC003EEFE2 /* WiFiLanChatUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiLanChatUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1307B5B62750E8FA003EEFE2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1307B5CC2750E8FC003EEFE2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1307B5D62750E8FC003EEFE2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1307B5B02750E8FA003EEFE2 = {
+			isa = PBXGroup;
+			children = (
+				1307B5BB2750E8FA003EEFE2 /* WiFiLanChat */,
+				1307B5D22750E8FC003EEFE2 /* WiFiLanChatTests */,
+				1307B5DC2750E8FC003EEFE2 /* WiFiLanChatUITests */,
+				1307B5BA2750E8FA003EEFE2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1307B5BA2750E8FA003EEFE2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1307B5B92750E8FA003EEFE2 /* WiFiLanChat.app */,
+				1307B5CF2750E8FC003EEFE2 /* WiFiLanChatTests.xctest */,
+				1307B5D92750E8FC003EEFE2 /* WiFiLanChatUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1307B5BB2750E8FA003EEFE2 /* WiFiLanChat */ = {
+			isa = PBXGroup;
+			children = (
+				1307B5BC2750E8FA003EEFE2 /* AppDelegate.swift */,
+				1307B5BE2750E8FA003EEFE2 /* SceneDelegate.swift */,
+				1307B5C02750E8FA003EEFE2 /* ViewController.swift */,
+				1307B5C22750E8FA003EEFE2 /* Main.storyboard */,
+				1307B5C52750E8FB003EEFE2 /* Assets.xcassets */,
+				1307B5C72750E8FB003EEFE2 /* LaunchScreen.storyboard */,
+				1307B5CA2750E8FB003EEFE2 /* Info.plist */,
+			);
+			path = WiFiLanChat;
+			sourceTree = "<group>";
+		};
+		1307B5D22750E8FC003EEFE2 /* WiFiLanChatTests */ = {
+			isa = PBXGroup;
+			children = (
+				1307B5D32750E8FC003EEFE2 /* WiFiLanChatTests.swift */,
+			);
+			path = WiFiLanChatTests;
+			sourceTree = "<group>";
+		};
+		1307B5DC2750E8FC003EEFE2 /* WiFiLanChatUITests */ = {
+			isa = PBXGroup;
+			children = (
+				1307B5DD2750E8FC003EEFE2 /* WiFiLanChatUITests.swift */,
+				1307B5DF2750E8FC003EEFE2 /* WiFiLanChatUITestsLaunchTests.swift */,
+			);
+			path = WiFiLanChatUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1307B5B82750E8FA003EEFE2 /* WiFiLanChat */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1307B5E32750E8FC003EEFE2 /* Build configuration list for PBXNativeTarget "WiFiLanChat" */;
+			buildPhases = (
+				1307B5B52750E8FA003EEFE2 /* Sources */,
+				1307B5B62750E8FA003EEFE2 /* Frameworks */,
+				1307B5B72750E8FA003EEFE2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WiFiLanChat;
+			productName = WiFiLanChat;
+			productReference = 1307B5B92750E8FA003EEFE2 /* WiFiLanChat.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1307B5CE2750E8FC003EEFE2 /* WiFiLanChatTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1307B5E62750E8FC003EEFE2 /* Build configuration list for PBXNativeTarget "WiFiLanChatTests" */;
+			buildPhases = (
+				1307B5CB2750E8FC003EEFE2 /* Sources */,
+				1307B5CC2750E8FC003EEFE2 /* Frameworks */,
+				1307B5CD2750E8FC003EEFE2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1307B5D12750E8FC003EEFE2 /* PBXTargetDependency */,
+			);
+			name = WiFiLanChatTests;
+			productName = WiFiLanChatTests;
+			productReference = 1307B5CF2750E8FC003EEFE2 /* WiFiLanChatTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		1307B5D82750E8FC003EEFE2 /* WiFiLanChatUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1307B5E92750E8FC003EEFE2 /* Build configuration list for PBXNativeTarget "WiFiLanChatUITests" */;
+			buildPhases = (
+				1307B5D52750E8FC003EEFE2 /* Sources */,
+				1307B5D62750E8FC003EEFE2 /* Frameworks */,
+				1307B5D72750E8FC003EEFE2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1307B5DB2750E8FC003EEFE2 /* PBXTargetDependency */,
+			);
+			name = WiFiLanChatUITests;
+			productName = WiFiLanChatUITests;
+			productReference = 1307B5D92750E8FC003EEFE2 /* WiFiLanChatUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1307B5B12750E8FA003EEFE2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1310;
+				LastUpgradeCheck = 1310;
+				TargetAttributes = {
+					1307B5B82750E8FA003EEFE2 = {
+						CreatedOnToolsVersion = 13.1;
+					};
+					1307B5CE2750E8FC003EEFE2 = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = 1307B5B82750E8FA003EEFE2;
+					};
+					1307B5D82750E8FC003EEFE2 = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = 1307B5B82750E8FA003EEFE2;
+					};
+				};
+			};
+			buildConfigurationList = 1307B5B42750E8FA003EEFE2 /* Build configuration list for PBXProject "WiFiLanChat" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1307B5B02750E8FA003EEFE2;
+			productRefGroup = 1307B5BA2750E8FA003EEFE2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1307B5B82750E8FA003EEFE2 /* WiFiLanChat */,
+				1307B5CE2750E8FC003EEFE2 /* WiFiLanChatTests */,
+				1307B5D82750E8FC003EEFE2 /* WiFiLanChatUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1307B5B72750E8FA003EEFE2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1307B5C92750E8FB003EEFE2 /* LaunchScreen.storyboard in Resources */,
+				1307B5C62750E8FB003EEFE2 /* Assets.xcassets in Resources */,
+				1307B5C42750E8FA003EEFE2 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1307B5CD2750E8FC003EEFE2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1307B5D72750E8FC003EEFE2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1307B5B52750E8FA003EEFE2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1307B5C12750E8FA003EEFE2 /* ViewController.swift in Sources */,
+				1307B5BD2750E8FA003EEFE2 /* AppDelegate.swift in Sources */,
+				1307B5BF2750E8FA003EEFE2 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1307B5CB2750E8FC003EEFE2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1307B5D42750E8FC003EEFE2 /* WiFiLanChatTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1307B5D52750E8FC003EEFE2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1307B5DE2750E8FC003EEFE2 /* WiFiLanChatUITests.swift in Sources */,
+				1307B5E02750E8FC003EEFE2 /* WiFiLanChatUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1307B5D12750E8FC003EEFE2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1307B5B82750E8FA003EEFE2 /* WiFiLanChat */;
+			targetProxy = 1307B5D02750E8FC003EEFE2 /* PBXContainerItemProxy */;
+		};
+		1307B5DB2750E8FC003EEFE2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1307B5B82750E8FA003EEFE2 /* WiFiLanChat */;
+			targetProxy = 1307B5DA2750E8FC003EEFE2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1307B5C22750E8FA003EEFE2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1307B5C32750E8FA003EEFE2 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		1307B5C72750E8FB003EEFE2 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1307B5C82750E8FB003EEFE2 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1307B5E12750E8FC003EEFE2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1307B5E22750E8FC003EEFE2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1307B5E42750E8FC003EEFE2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2MDZ96HH4V;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WiFiLanChat/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bilalBakhrom.underTest.WiFiLanChat;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1307B5E52750E8FC003EEFE2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2MDZ96HH4V;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WiFiLanChat/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bilalBakhrom.underTest.WiFiLanChat;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		1307B5E72750E8FC003EEFE2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2MDZ96HH4V;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bilalBakhrom.underTest.WiFiLanChatTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WiFiLanChat.app/WiFiLanChat";
+			};
+			name = Debug;
+		};
+		1307B5E82750E8FC003EEFE2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2MDZ96HH4V;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bilalBakhrom.underTest.WiFiLanChatTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WiFiLanChat.app/WiFiLanChat";
+			};
+			name = Release;
+		};
+		1307B5EA2750E8FC003EEFE2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2MDZ96HH4V;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bilalBakhrom.underTest.WiFiLanChatUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = WiFiLanChat;
+			};
+			name = Debug;
+		};
+		1307B5EB2750E8FC003EEFE2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2MDZ96HH4V;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bilalBakhrom.underTest.WiFiLanChatUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = WiFiLanChat;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1307B5B42750E8FA003EEFE2 /* Build configuration list for PBXProject "WiFiLanChat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1307B5E12750E8FC003EEFE2 /* Debug */,
+				1307B5E22750E8FC003EEFE2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1307B5E32750E8FC003EEFE2 /* Build configuration list for PBXNativeTarget "WiFiLanChat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1307B5E42750E8FC003EEFE2 /* Debug */,
+				1307B5E52750E8FC003EEFE2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1307B5E62750E8FC003EEFE2 /* Build configuration list for PBXNativeTarget "WiFiLanChatTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1307B5E72750E8FC003EEFE2 /* Debug */,
+				1307B5E82750E8FC003EEFE2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1307B5E92750E8FC003EEFE2 /* Build configuration list for PBXNativeTarget "WiFiLanChatUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1307B5EA2750E8FC003EEFE2 /* Debug */,
+				1307B5EB2750E8FC003EEFE2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1307B5B12750E8FA003EEFE2 /* Project object */;
+}
