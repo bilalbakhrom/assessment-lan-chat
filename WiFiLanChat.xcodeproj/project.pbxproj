@@ -19,6 +19,9 @@
 		1353F292275155130036001F /* Launcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F291275155130036001F /* Launcher.swift */; };
 		1353F296275157660036001F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F295275157660036001F /* SearchViewController.swift */; };
 		1353F2982751576E0036001F /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F2972751576E0036001F /* ChatRoomViewController.swift */; };
+		1353F29A275158A00036001F /* StartViewController+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F299275158A00036001F /* StartViewController+Layout.swift */; };
+		1353F29D27515A7C0036001F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F29C27515A7C0036001F /* Colors.swift */; };
+		1353F2A227515C920036001F /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F2A127515C920036001F /* Button.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +58,9 @@
 		1353F291275155130036001F /* Launcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Launcher.swift; sourceTree = "<group>"; };
 		1353F295275157660036001F /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		1353F2972751576E0036001F /* ChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController.swift; sourceTree = "<group>"; };
+		1353F299275158A00036001F /* StartViewController+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StartViewController+Layout.swift"; sourceTree = "<group>"; };
+		1353F29C27515A7C0036001F /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		1353F2A127515C920036001F /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +114,8 @@
 				1353F28B2751523F0036001F /* Base */,
 				1353F28E275152600036001F /* Delegate */,
 				1353F28F2751529C0036001F /* Modules */,
+				1353F2A027515C820036001F /* Views */,
+				1353F29B27515A700036001F /* Extensions */,
 				1307B5C52750E8FB003EEFE2 /* Assets.xcassets */,
 				1307B5C72750E8FB003EEFE2 /* LaunchScreen.storyboard */,
 				1307B5CA2750E8FB003EEFE2 /* Info.plist */,
@@ -164,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				1307B5C02750E8FA003EEFE2 /* StartViewController.swift */,
+				1353F299275158A00036001F /* StartViewController+Layout.swift */,
 			);
 			path = Start;
 			sourceTree = "<group>";
@@ -182,6 +191,22 @@
 				1353F2972751576E0036001F /* ChatRoomViewController.swift */,
 			);
 			path = ChatRoom;
+			sourceTree = "<group>";
+		};
+		1353F29B27515A700036001F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1353F29C27515A7C0036001F /* Colors.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1353F2A027515C820036001F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1353F2A127515C920036001F /* Button.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,12 +340,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				1353F2982751576E0036001F /* ChatRoomViewController.swift in Sources */,
+				1353F29D27515A7C0036001F /* Colors.swift in Sources */,
 				1353F296275157660036001F /* SearchViewController.swift in Sources */,
+				1353F29A275158A00036001F /* StartViewController+Layout.swift in Sources */,
 				1307B5C12750E8FA003EEFE2 /* StartViewController.swift in Sources */,
 				1353F28D2751524A0036001F /* BaseViewController.swift in Sources */,
 				1353F292275155130036001F /* Launcher.swift in Sources */,
 				1307B5BD2750E8FA003EEFE2 /* AppDelegate.swift in Sources */,
 				1307B5BF2750E8FA003EEFE2 /* SceneDelegate.swift in Sources */,
+				1353F2A227515C920036001F /* Button.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

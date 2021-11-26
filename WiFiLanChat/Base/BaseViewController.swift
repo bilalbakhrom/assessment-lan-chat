@@ -42,3 +42,14 @@ extension BaseViewController {
         let gradientEndPoint = CGPoint(x: 0.75, y: 0.5)
     }
 }
+
+@objc extension BaseViewController {
+    func setup() {
+        embedSubviews()
+        setSubviewsConstraints()
+    }
+    
+    func embedSubviews() {}
+    
+    func setSubviewsConstraints() {}
+}
