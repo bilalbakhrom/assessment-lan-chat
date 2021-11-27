@@ -8,7 +8,7 @@
 import Foundation
 
 extension ifaddrs {
-    var isWifiDevice: Bool {
+    var isWifi: Bool {
         let name = String(cString: ifa_name)
         return validateInterface(ifa_addr.pointee.sa_family) && name == "en0"
     }

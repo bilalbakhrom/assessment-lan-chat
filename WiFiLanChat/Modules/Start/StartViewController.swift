@@ -45,29 +45,29 @@ class StartViewController: BaseViewController {
     }()
 
     // MARK: - Actions
-    @objc private func searchButtonClicked() {
+    @objc func searchButtonClicked() {
         let searchVC = SearchViewController()
         navigationController?.pushViewController(searchVC, animated: true)
     }
     
-    @objc private func didTapOnIPLabel() {
+    @objc func didTapOnIPLabel() {
         // TODO: - Copy IP address
     }
     
-    private func listentWifiConnectionStatus() {
+    func listentWifiConnectionStatus() {
         NetFlowInspector.shared.addObserver(forKeyPath: String(describing: self)) { [weak self] status in
             status == .connected ? self?.didEstablishWifiConnection() : self?.didLostWifiConnection()
         }
     }
     
-    private func didLostWifiConnection() {
+    func didLostWifiConnection() {
         wifiLogo.image = UIImage(named: "wifi-slash-logo")
         ipLabel.textColor = .warningColor
         ipLabel.text = uiConst.ipLabelWarningText
         searchButton.isEnabled = false
     }
     
-    private func didEstablishWifiConnection() {
+    func didEstablishWifiConnection() {
         wifiLogo.image = UIImage(named: "wifi-logo")
         ipLabel.textColor = .linkedTextColor
         ipLabel.text = "IP: \(NetFlowInspector.shared.host ?? "0.0.0.0")"

@@ -70,7 +70,7 @@ extension NetFlowInspector: NetFlowInspectable {
         
         while ptr != nil {
             defer { ptr = ptr?.pointee.ifa_next }
-            guard let interface = ptr?.pointee, interface.isWifiDevice else { continue }
+            guard let interface = ptr?.pointee, interface.isWifi else { continue }
             getnameinfo(interface.ifa_addr,
                         socklen_t(interface.ifa_addr.pointee.sa_len),
                         &hostname,

@@ -27,6 +27,7 @@
 		1353F2AC27521E990036001F /* Ifaddrs+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F2AB27521E990036001F /* Ifaddrs+Ext.swift */; };
 		1353F2AE275228750036001F /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F2AD275228750036001F /* BaseNavigationController.swift */; };
 		1353F2B0275229E50036001F /* StartViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F2AF275229E50036001F /* StartViewControllerTests.swift */; };
+		1353F2B327522D170036001F /* MockedStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F2B227522D170036001F /* MockedStartViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		1353F2AB27521E990036001F /* Ifaddrs+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ifaddrs+Ext.swift"; sourceTree = "<group>"; };
 		1353F2AD275228750036001F /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		1353F2AF275229E50036001F /* StartViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewControllerTests.swift; sourceTree = "<group>"; };
+		1353F2B227522D170036001F /* MockedStartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedStartViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 		1307B5D22750E8FC003EEFE2 /* WiFiLanChatTests */ = {
 			isa = PBXGroup;
 			children = (
+				1353F2B127522D070036001F /* Mocks */,
 				1353F2AF275229E50036001F /* StartViewControllerTests.swift */,
 			);
 			path = WiFiLanChatTests;
@@ -238,6 +241,14 @@
 			children = (
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		1353F2B127522D070036001F /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				1353F2B227522D170036001F /* MockedStartViewController.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -392,6 +403,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1353F2B327522D170036001F /* MockedStartViewController.swift in Sources */,
 				1353F2B0275229E50036001F /* StartViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
