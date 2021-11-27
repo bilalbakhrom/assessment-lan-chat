@@ -15,4 +15,8 @@ extension UIColor {
     static var linkedTextColor: UIColor {
         UIColor(red: 0.384, green: 0.634, blue: 0.96, alpha: 1)
     }
+    
+    static var warningColor: UIColor {
+        UIColor(red: 0.88, green: 0.563, blue: 0.086, alpha: 1)
+    }
 }

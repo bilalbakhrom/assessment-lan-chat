@@ -22,6 +22,9 @@
 		1353F29A275158A00036001F /* StartViewController+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F299275158A00036001F /* StartViewController+Layout.swift */; };
 		1353F29D27515A7C0036001F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F29C27515A7C0036001F /* Colors.swift */; };
 		1353F2A227515C920036001F /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F2A127515C920036001F /* Button.swift */; };
+		1353F2A52751EB960036001F /* NetFlowInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F2A42751EB960036001F /* NetFlowInspector.swift */; };
+		1353F2A72751FDEC0036001F /* NetFlowInstpectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F2A62751FDEC0036001F /* NetFlowInstpectable.swift */; };
+		1353F2A9275214E80036001F /* SearchViewController+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F2A8275214E80036001F /* SearchViewController+Layout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +64,9 @@
 		1353F299275158A00036001F /* StartViewController+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StartViewController+Layout.swift"; sourceTree = "<group>"; };
 		1353F29C27515A7C0036001F /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		1353F2A127515C920036001F /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		1353F2A42751EB960036001F /* NetFlowInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetFlowInspector.swift; sourceTree = "<group>"; };
+		1353F2A62751FDEC0036001F /* NetFlowInstpectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetFlowInstpectable.swift; sourceTree = "<group>"; };
+		1353F2A8275214E80036001F /* SearchViewController+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewController+Layout.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,8 +119,10 @@
 			children = (
 				1353F28B2751523F0036001F /* Base */,
 				1353F28E275152600036001F /* Delegate */,
+				1353F2A32751EB890036001F /* Managers */,
 				1353F28F2751529C0036001F /* Modules */,
 				1353F2A027515C820036001F /* Views */,
+				1353F2AA275215A50036001F /* Models */,
 				1353F29B27515A700036001F /* Extensions */,
 				1307B5C52750E8FB003EEFE2 /* Assets.xcassets */,
 				1307B5C72750E8FB003EEFE2 /* LaunchScreen.storyboard */,
@@ -181,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				1353F295275157660036001F /* SearchViewController.swift */,
+				1353F2A8275214E80036001F /* SearchViewController+Layout.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -207,6 +216,22 @@
 				1353F2A127515C920036001F /* Button.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		1353F2A32751EB890036001F /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				1353F2A42751EB960036001F /* NetFlowInspector.swift */,
+				1353F2A62751FDEC0036001F /* NetFlowInstpectable.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		1353F2AA275215A50036001F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -340,6 +365,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1353F2982751576E0036001F /* ChatRoomViewController.swift in Sources */,
+				1353F2A9275214E80036001F /* SearchViewController+Layout.swift in Sources */,
 				1353F29D27515A7C0036001F /* Colors.swift in Sources */,
 				1353F296275157660036001F /* SearchViewController.swift in Sources */,
 				1353F29A275158A00036001F /* StartViewController+Layout.swift in Sources */,
@@ -348,6 +374,8 @@
 				1353F292275155130036001F /* Launcher.swift in Sources */,
 				1307B5BD2750E8FA003EEFE2 /* AppDelegate.swift in Sources */,
 				1307B5BF2750E8FA003EEFE2 /* SceneDelegate.swift in Sources */,
+				1353F2A72751FDEC0036001F /* NetFlowInstpectable.swift in Sources */,
+				1353F2A52751EB960036001F /* NetFlowInspector.swift in Sources */,
 				1353F2A227515C920036001F /* Button.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

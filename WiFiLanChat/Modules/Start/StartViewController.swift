@@ -38,7 +38,7 @@ class StartViewController: BaseViewController {
         view.textAlignment = .center
         view.translatesAutoresizingMaskIntoConstraints = false
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didSelectIPLabel))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapOnIPLabel))
         view.addGestureRecognizer(tapGesture)
         
         return view
@@ -46,11 +46,30 @@ class StartViewController: BaseViewController {
 
     // MARK: - Actions
     @objc private func searchButtonClicked() {
-        
+        let searchVC = SearchViewController()
+        navigationController?.pushViewController(searchVC, animated: true)
     }
     
-    @objc private func didSelectIPLabel() {
+    @objc private func didTapOnIPLabel() {
         // TODO: - Copy IP address
+    }
+    
+    private func listentWifiConnectionStatus() {
+        NetFlowInspector.shared.addObserver(forKeyPath: String(describing: self)) { [weak self] status in
+            status == .connected ? self?.didEstablishWifiConnection() : self?.didLostWifiConnection()
+        }
+    }
+    
+    private func didLostWifiConnection() {
+        wifiLogo.image = UIImage(named: "wifi-slash-logo")
+        ipLabel.textColor = .warningColor
+        ipLabel.text = uiConst.ipLabelWarningText
+    }
+    
+    private func didEstablishWifiConnection() {
+        wifiLogo.image = UIImage(named: "wifi-logo")
+        ipLabel.textColor = .linkedTextColor
+        ipLabel.text = uiConst.ipLabelPlaceholder
     }
 }
 
@@ -58,13 +77,30 @@ class StartViewController: BaseViewController {
 extension StartViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = uiConst.title
         setup()
+        listentWifiConnectionStatus()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
 }
 
 extension StartViewController {
     private struct UIConstants {
+        let title = "Start"
         let searchText = "Search"
         let ipLabelPlaceholder = "0.0.0.0"
+        let ipLabelWarningText = "No connection is available"
     }
 }
