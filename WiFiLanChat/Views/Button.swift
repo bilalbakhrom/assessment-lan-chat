@@ -11,6 +11,12 @@ class Button: UIButton {
     private var shadowLayer: CAShapeLayer!
     private let const: Constants
     
+    override var isEnabled: Bool {
+        didSet {
+            alpha = isEnabled ? 1.0 : 0.5
+        }
+    }
+    
     override init(frame: CGRect) {
         const = Constants()
         super.init(frame: frame)

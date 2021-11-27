@@ -8,7 +8,7 @@
 import UIKit
 
 class BaseViewController: UIViewController {
-    private let uiConst = UIConstants()
+    private let uiConst = UIConstants()    
     
     private lazy var gradientLayer: CAGradientLayer = {
         let layer = CAGradientLayer()

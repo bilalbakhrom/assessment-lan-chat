@@ -25,6 +25,7 @@
 		1353F2A52751EB960036001F /* NetFlowInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F2A42751EB960036001F /* NetFlowInspector.swift */; };
 		1353F2A72751FDEC0036001F /* NetFlowInstpectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F2A62751FDEC0036001F /* NetFlowInstpectable.swift */; };
 		1353F2A9275214E80036001F /* SearchViewController+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F2A8275214E80036001F /* SearchViewController+Layout.swift */; };
+		1353F2AC27521E990036001F /* Ifaddrs+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F2AB27521E990036001F /* Ifaddrs+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		1353F2A42751EB960036001F /* NetFlowInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetFlowInspector.swift; sourceTree = "<group>"; };
 		1353F2A62751FDEC0036001F /* NetFlowInstpectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetFlowInstpectable.swift; sourceTree = "<group>"; };
 		1353F2A8275214E80036001F /* SearchViewController+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewController+Layout.swift"; sourceTree = "<group>"; };
+		1353F2AB27521E990036001F /* Ifaddrs+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ifaddrs+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				1353F29C27515A7C0036001F /* Colors.swift */,
+				1353F2AB27521E990036001F /* Ifaddrs+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1353F2982751576E0036001F /* ChatRoomViewController.swift in Sources */,
+				1353F2AC27521E990036001F /* Ifaddrs+Ext.swift in Sources */,
 				1353F2A9275214E80036001F /* SearchViewController+Layout.swift in Sources */,
 				1353F29D27515A7C0036001F /* Colors.swift in Sources */,
 				1353F296275157660036001F /* SearchViewController.swift in Sources */,

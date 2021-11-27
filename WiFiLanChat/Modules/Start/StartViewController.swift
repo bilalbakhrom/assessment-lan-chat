@@ -64,12 +64,14 @@ class StartViewController: BaseViewController {
         wifiLogo.image = UIImage(named: "wifi-slash-logo")
         ipLabel.textColor = .warningColor
         ipLabel.text = uiConst.ipLabelWarningText
+        searchButton.isEnabled = false
     }
     
     private func didEstablishWifiConnection() {
         wifiLogo.image = UIImage(named: "wifi-logo")
         ipLabel.textColor = .linkedTextColor
-        ipLabel.text = uiConst.ipLabelPlaceholder
+        ipLabel.text = "IP: \(NetFlowInspector.shared.host ?? "0.0.0.0")"
+        searchButton.isEnabled = true
     }
 }
 
@@ -100,7 +102,7 @@ extension StartViewController {
     private struct UIConstants {
         let title = "Start"
         let searchText = "Search"
-        let ipLabelPlaceholder = "0.0.0.0"
+        let ipLabelPlaceholder = "Initialize..."
         let ipLabelWarningText = "No connection is available"
     }
 }
