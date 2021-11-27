@@ -21,7 +21,7 @@ class Button: UIButton {
         const = Constants()
         super.init(frame: frame)
                 
-        backgroundColor = .backgroundColor
+        backgroundColor = .white
         layer.cornerRadius = const.cornerRadius
     }
     

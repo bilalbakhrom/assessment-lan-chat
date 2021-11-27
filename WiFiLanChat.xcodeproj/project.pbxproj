@@ -28,6 +28,10 @@
 		1353F2AE275228750036001F /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F2AD275228750036001F /* BaseNavigationController.swift */; };
 		1353F2B0275229E50036001F /* StartViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F2AF275229E50036001F /* StartViewControllerTests.swift */; };
 		1353F2B327522D170036001F /* MockedStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F2B227522D170036001F /* MockedStartViewController.swift */; };
+		1364D02227523B05000208D6 /* IPField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D02127523B05000208D6 /* IPField.swift */; };
+		1364D02427523B1C000208D6 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D02327523B1C000208D6 /* TextField.swift */; };
+		1364D02627523CA7000208D6 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D02527523CA7000208D6 /* String+Ext.swift */; };
+		1364D02827524A59000208D6 /* SearchViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D02727524A59000208D6 /* SearchViewControllerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +77,10 @@
 		1353F2AD275228750036001F /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		1353F2AF275229E50036001F /* StartViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewControllerTests.swift; sourceTree = "<group>"; };
 		1353F2B227522D170036001F /* MockedStartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockedStartViewController.swift; sourceTree = "<group>"; };
+		1364D02127523B05000208D6 /* IPField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPField.swift; sourceTree = "<group>"; };
+		1364D02327523B1C000208D6 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		1364D02527523CA7000208D6 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		1364D02727524A59000208D6 /* SearchViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +150,7 @@
 			children = (
 				1353F2B127522D070036001F /* Mocks */,
 				1353F2AF275229E50036001F /* StartViewControllerTests.swift */,
+				1364D02727524A59000208D6 /* SearchViewControllerTests.swift */,
 			);
 			path = WiFiLanChatTests;
 			sourceTree = "<group>";
@@ -215,6 +224,7 @@
 			children = (
 				1353F29C27515A7C0036001F /* Colors.swift */,
 				1353F2AB27521E990036001F /* Ifaddrs+Ext.swift */,
+				1364D02527523CA7000208D6 /* String+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -223,6 +233,8 @@
 			isa = PBXGroup;
 			children = (
 				1353F2A127515C920036001F /* Button.swift */,
+				1364D02127523B05000208D6 /* IPField.swift */,
+				1364D02327523B1C000208D6 /* TextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -381,17 +393,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1364D02627523CA7000208D6 /* String+Ext.swift in Sources */,
 				1353F2982751576E0036001F /* ChatRoomViewController.swift in Sources */,
 				1353F2AC27521E990036001F /* Ifaddrs+Ext.swift in Sources */,
 				1353F2A9275214E80036001F /* SearchViewController+Layout.swift in Sources */,
 				1353F29D27515A7C0036001F /* Colors.swift in Sources */,
 				1353F296275157660036001F /* SearchViewController.swift in Sources */,
 				1353F29A275158A00036001F /* StartViewController+Layout.swift in Sources */,
+				1364D02427523B1C000208D6 /* TextField.swift in Sources */,
 				1307B5C12750E8FA003EEFE2 /* StartViewController.swift in Sources */,
 				1353F28D2751524A0036001F /* BaseViewController.swift in Sources */,
 				1353F2AE275228750036001F /* BaseNavigationController.swift in Sources */,
 				1353F292275155130036001F /* Launcher.swift in Sources */,
 				1307B5BD2750E8FA003EEFE2 /* AppDelegate.swift in Sources */,
+				1364D02227523B05000208D6 /* IPField.swift in Sources */,
 				1307B5BF2750E8FA003EEFE2 /* SceneDelegate.swift in Sources */,
 				1353F2A72751FDEC0036001F /* NetFlowInstpectable.swift in Sources */,
 				1353F2A52751EB960036001F /* NetFlowInspector.swift in Sources */,
@@ -405,6 +420,7 @@
 			files = (
 				1353F2B327522D170036001F /* MockedStartViewController.swift in Sources */,
 				1353F2B0275229E50036001F /* StartViewControllerTests.swift in Sources */,
+				1364D02827524A59000208D6 /* SearchViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
