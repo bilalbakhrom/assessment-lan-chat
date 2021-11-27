@@ -12,7 +12,6 @@
 		1307B5C12750E8FA003EEFE2 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1307B5C02750E8FA003EEFE2 /* StartViewController.swift */; };
 		1307B5C62750E8FB003EEFE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1307B5C52750E8FB003EEFE2 /* Assets.xcassets */; };
 		1307B5C92750E8FB003EEFE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1307B5C72750E8FB003EEFE2 /* LaunchScreen.storyboard */; };
-		1307B5D42750E8FC003EEFE2 /* WiFiLanChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1307B5D32750E8FC003EEFE2 /* WiFiLanChatTests.swift */; };
 		1307B5DE2750E8FC003EEFE2 /* WiFiLanChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1307B5DD2750E8FC003EEFE2 /* WiFiLanChatUITests.swift */; };
 		1307B5E02750E8FC003EEFE2 /* WiFiLanChatUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1307B5DF2750E8FC003EEFE2 /* WiFiLanChatUITestsLaunchTests.swift */; };
 		1353F28D2751524A0036001F /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F28C2751524A0036001F /* BaseViewController.swift */; };
@@ -26,6 +25,8 @@
 		1353F2A72751FDEC0036001F /* NetFlowInstpectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F2A62751FDEC0036001F /* NetFlowInstpectable.swift */; };
 		1353F2A9275214E80036001F /* SearchViewController+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F2A8275214E80036001F /* SearchViewController+Layout.swift */; };
 		1353F2AC27521E990036001F /* Ifaddrs+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F2AB27521E990036001F /* Ifaddrs+Ext.swift */; };
+		1353F2AE275228750036001F /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F2AD275228750036001F /* BaseNavigationController.swift */; };
+		1353F2B0275229E50036001F /* StartViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1353F2AF275229E50036001F /* StartViewControllerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +55,6 @@
 		1307B5C82750E8FB003EEFE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1307B5CA2750E8FB003EEFE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1307B5CF2750E8FC003EEFE2 /* WiFiLanChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WiFiLanChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1307B5D32750E8FC003EEFE2 /* WiFiLanChatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiLanChatTests.swift; sourceTree = "<group>"; };
 		1307B5D92750E8FC003EEFE2 /* WiFiLanChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WiFiLanChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1307B5DD2750E8FC003EEFE2 /* WiFiLanChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiLanChatUITests.swift; sourceTree = "<group>"; };
 		1307B5DF2750E8FC003EEFE2 /* WiFiLanChatUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiLanChatUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -69,6 +69,8 @@
 		1353F2A62751FDEC0036001F /* NetFlowInstpectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetFlowInstpectable.swift; sourceTree = "<group>"; };
 		1353F2A8275214E80036001F /* SearchViewController+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewController+Layout.swift"; sourceTree = "<group>"; };
 		1353F2AB27521E990036001F /* Ifaddrs+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ifaddrs+Ext.swift"; sourceTree = "<group>"; };
+		1353F2AD275228750036001F /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
+		1353F2AF275229E50036001F /* StartViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,7 +138,7 @@
 		1307B5D22750E8FC003EEFE2 /* WiFiLanChatTests */ = {
 			isa = PBXGroup;
 			children = (
-				1307B5D32750E8FC003EEFE2 /* WiFiLanChatTests.swift */,
+				1353F2AF275229E50036001F /* StartViewControllerTests.swift */,
 			);
 			path = WiFiLanChatTests;
 			sourceTree = "<group>";
@@ -154,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				1353F28C2751524A0036001F /* BaseViewController.swift */,
+				1353F2AD275228750036001F /* BaseNavigationController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				1353F29A275158A00036001F /* StartViewController+Layout.swift in Sources */,
 				1307B5C12750E8FA003EEFE2 /* StartViewController.swift in Sources */,
 				1353F28D2751524A0036001F /* BaseViewController.swift in Sources */,
+				1353F2AE275228750036001F /* BaseNavigationController.swift in Sources */,
 				1353F292275155130036001F /* Launcher.swift in Sources */,
 				1307B5BD2750E8FA003EEFE2 /* AppDelegate.swift in Sources */,
 				1307B5BF2750E8FA003EEFE2 /* SceneDelegate.swift in Sources */,
@@ -388,7 +392,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1307B5D42750E8FC003EEFE2 /* WiFiLanChatTests.swift in Sources */,
+				1353F2B0275229E50036001F /* StartViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

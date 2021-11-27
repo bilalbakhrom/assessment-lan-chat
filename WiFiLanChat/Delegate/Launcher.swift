@@ -20,7 +20,7 @@ class Launcher {
     
     private func navigateToStartPage() {
         let startVC = StartViewController()
-        let navController: UINavigationController = makeNavController(rootViewController: startVC)
+        let navController: BaseNavigationController = makeNavController(rootViewController: startVC)
         window.rootViewController = navController
         window.makeKeyAndVisible()
     }
@@ -29,7 +29,7 @@ class Launcher {
         let navController = T(rootViewController: rootViewController)
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()
-        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.black]
         navBarAppearance.backgroundColor = .clear
         navBarAppearance.shadowColor = nil
         navController.navigationBar.tintColor = .black

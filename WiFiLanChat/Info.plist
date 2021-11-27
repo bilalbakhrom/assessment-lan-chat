@@ -20,6 +20,6 @@
 		</dict>
 	</dict>
 	<key>UIStatusBarStyle</key>
-	<string>UIStatusBarStyleLightContent</string>
+	<string>UIStatusBarStyleDarkContent</string>
 </dict>
 </plist>
