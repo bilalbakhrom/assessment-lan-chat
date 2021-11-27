@@ -32,6 +32,7 @@
 		1364D02427523B1C000208D6 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D02327523B1C000208D6 /* TextField.swift */; };
 		1364D02627523CA7000208D6 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D02527523CA7000208D6 /* String+Ext.swift */; };
 		1364D02827524A59000208D6 /* SearchViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D02727524A59000208D6 /* SearchViewControllerTests.swift */; };
+		1364D02A27525B32000208D6 /* ChatNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D02927525B32000208D6 /* ChatNetwork.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		1364D02327523B1C000208D6 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		1364D02527523CA7000208D6 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		1364D02727524A59000208D6 /* SearchViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewControllerTests.swift; sourceTree = "<group>"; };
+		1364D02927525B32000208D6 /* ChatNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatNetwork.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +246,7 @@
 			children = (
 				1353F2A42751EB960036001F /* NetFlowInspector.swift */,
 				1353F2A62751FDEC0036001F /* NetFlowInstpectable.swift */,
+				1364D02927525B32000208D6 /* ChatNetwork.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -398,6 +401,7 @@
 				1353F2AC27521E990036001F /* Ifaddrs+Ext.swift in Sources */,
 				1353F2A9275214E80036001F /* SearchViewController+Layout.swift in Sources */,
 				1353F29D27515A7C0036001F /* Colors.swift in Sources */,
+				1364D02A27525B32000208D6 /* ChatNetwork.swift in Sources */,
 				1353F296275157660036001F /* SearchViewController.swift in Sources */,
 				1353F29A275158A00036001F /* StartViewController+Layout.swift in Sources */,
 				1364D02427523B1C000208D6 /* TextField.swift in Sources */,

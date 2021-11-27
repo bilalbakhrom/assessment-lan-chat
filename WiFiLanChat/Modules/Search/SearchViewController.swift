@@ -43,6 +43,10 @@ class SearchViewController: BaseViewController {
     // MARK: - Actions
     @objc func connectButtonClicked() {
         guard receiverHost.filter({ $0 == "." }).count == 3 else { return }
+        guard let network = ChatNetwork(host: receiverHost, port: "5060") else { return }
+        print("Instance is created")
+        network.connect()
+        network.send("data")
     }
 }
 
