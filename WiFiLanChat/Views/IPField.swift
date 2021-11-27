@@ -41,7 +41,9 @@ class IPField: UIView {
     }
     
     private var host: String {
-        ipFields.compactMap { $0.text }.joined()
+        ipFields.compactMap {
+            $0.text == nil || $0.text!.isEmpty ? nil : $0.text
+        }.joined(separator: ".")
     }
     
     func deleteBackward(_ sender: UITextField) {
@@ -57,8 +59,9 @@ class IPField: UIView {
 
 extension IPField: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if string.contains(".") {
-            
+        if string.filter({ $0 == "." }).count == 3 {
+            fill(with: string)
+            delegate?.didPasteHost(string)
         }
         
         // If user pressed "delete" button
@@ -115,11 +118,11 @@ extension IPField {
     }
     
     /// Fills TextField text with given code
-    /// - Parameter code: The text code
-    private func fill(with code: String) {
-        let digits = Array(code).map { String($0) }
-        digits.enumerated().forEach { index, digit in
-            ipFields[index].text = digit
+    /// - Parameter host: The text code
+    private func fill(with host: String) {
+        let partials = host.split(separator: ".").map(String.init)
+        partials.enumerated().forEach { index, partial in
+            ipFields[index].text = partial
         }
     }
     

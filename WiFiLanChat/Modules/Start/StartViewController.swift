@@ -23,7 +23,7 @@ class StartViewController: BaseViewController {
     
     private(set) lazy var searchButton: Button = {
         let view = Button()
-        view.set(title: uiConst.searchText, color: .black)        
+        view.set(title: uiConst.searchText.uppercased(), color: .black)        
         view.addTarget(self, action: #selector(searchButtonClicked), for: .touchUpInside)
         view.translatesAutoresizingMaskIntoConstraints = false
         

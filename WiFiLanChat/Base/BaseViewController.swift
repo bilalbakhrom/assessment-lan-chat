@@ -32,6 +32,16 @@ class BaseViewController: UIViewController {
         
         gradientLayer.frame = view.bounds
     }
+    
+    func hideKeyboardWhenTappedOnView() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    // MARK: - Actions
+    @objc private func hideKeyboard() {
+        view.endEditing(true)
+    }
 }
 
 extension BaseViewController {
