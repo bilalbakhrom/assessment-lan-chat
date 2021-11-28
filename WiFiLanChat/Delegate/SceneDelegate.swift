@@ -12,9 +12,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        let launcher = Launcher(windowScene: windowScene)
-        window = launcher.window
-        launcher.launch()
+        sharedLauncher = Launcher(windowScene: windowScene)
+        window = sharedLauncher?.window
+        sharedLauncher?.launch()
         // Start monitoring wifi connection
         NetFlowInspector.shared.start()
     }

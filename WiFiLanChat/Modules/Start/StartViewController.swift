@@ -113,7 +113,7 @@ extension StartViewController {
 extension StartViewController {
     private struct UIConstants {
         let title = "Start"
-        let searchText = "Search"
+        let searchText = "Search Host"
         let ipLabelPlaceholder = "Initialize..."
         let ipLabelWarningText = "No connection is available"
     }

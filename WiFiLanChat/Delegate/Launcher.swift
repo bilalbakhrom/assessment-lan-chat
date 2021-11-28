@@ -7,6 +7,8 @@
 
 import UIKit
 
+var sharedLauncher: Launcher?
+
 class Launcher {
     let window: UIWindow
     
@@ -20,12 +22,12 @@ class Launcher {
     
     private func navigateToStartPage() {
         let startVC = StartViewController()
-        let navController: BaseNavigationController = makeNavController(rootViewController: startVC)
+        let navController: BaseNavigationController = Launcher.makeNavController(rootViewController: startVC)
         window.rootViewController = navController
         window.makeKeyAndVisible()
     }
     
-    func makeNavController<T: UINavigationController>(rootViewController: UIViewController) -> T {
+    static func makeNavController<T: UINavigationController>(rootViewController: UIViewController) -> T {
         let navController = T(rootViewController: rootViewController)
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Network
 
 class SearchViewController: BaseViewController {
     private(set) var dwgConst = DrawingConstants()
@@ -40,13 +41,24 @@ class SearchViewController: BaseViewController {
         return view
     }()
     
+    func prepareChatRoom() {
+        let connection = PeerConnection(host: receiverHost, port: 1020)
+        openChatRoomViewController(using: connection)
+    }
+    
+    func openChatRoomViewController(using connection: PeerConnection) {
+        let chatRoomVC = ChatRoomViewController(connection: connection)
+        let navController: BaseNavigationController = Launcher.makeNavController(rootViewController: chatRoomVC)
+        navController.modalPresentationStyle = .fullScreen
+        navController.modalTransitionStyle = .flipHorizontal
+        
+        present(navController, animated: true, completion: nil)
+    }
+    
     // MARK: - Actions
     @objc func connectButtonClicked() {
         guard receiverHost.filter({ $0 == "." }).count == 3 else { return }
-        guard let network = ChatNetwork(host: receiverHost, port: "5060") else { return }
-        print("Instance is created")
-        network.connect()
-        network.send("data")
+        prepareChatRoom()
     }
 }
 
