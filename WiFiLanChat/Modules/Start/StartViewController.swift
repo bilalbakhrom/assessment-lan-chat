@@ -21,18 +21,39 @@ class StartViewController: BaseViewController {
         return view
     }()
     
-    private(set) lazy var searchButton: Button = {
+    private(set) lazy var createRoomButton: Button = {
+        let view = Button()
+        view.set(title: uiConst.createText.uppercased())
+        view.addTarget(self, action: #selector(createRoom), for: .touchUpInside)
+        view.backgroundColor = .systemGreen
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
+    private(set) lazy var searchRoomButton: Button = {
         let view = Button()
         view.set(title: uiConst.searchText.uppercased(), color: .black)        
-        view.addTarget(self, action: #selector(searchButtonClicked), for: .touchUpInside)
+        view.addTarget(self, action: #selector(searchRoom), for: .touchUpInside)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
+    private(set) lazy var stackView: UIStackView = {
+        let view = UIStackView()
+        view.axis = .vertical
+        view.distribution = .fillEqually
+        view.alignment = .fill
+        view.spacing = 20
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
     }()
     
     private(set) lazy var ipLabel: UILabel = {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapOnIPLabel))
-        let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(didLongTapOIPLabel))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(storeHostInBuffer))
+        let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(shareHost))
         let view = UILabel()
         view.text = uiConst.ipLabelPlaceholder
         view.textColor = .linkedTextColor
@@ -47,17 +68,24 @@ class StartViewController: BaseViewController {
     }()
 
     // MARK: - Actions
-    @objc func searchButtonClicked() {
-        let searchVC = SearchViewController()
-        navigationController?.pushViewController(searchVC, animated: true)
+    @objc func createRoom() {
+        guard let host = NetFlowInspector.shared.host else {
+            return
+        }
+        
+        openChatRoomViewController(using: host)
     }
     
-    @objc func didTapOnIPLabel() {
+    @objc func searchRoom() {
+        openSearchViewController()
+    }
+    
+    @objc func storeHostInBuffer() {
         guard NetFlowInspector.shared.isReachable else { return }
         UIPasteboard.general.string = NetFlowInspector.shared.host
     }
     
-    @objc func didLongTapOIPLabel() {
+    @objc func shareHost() {
         guard NetFlowInspector.shared.isReachable else { return }
         guard let host = NetFlowInspector.shared.host else { return }
         let text = "Hey, this is my IP address: \(host)"
@@ -66,7 +94,7 @@ class StartViewController: BaseViewController {
         present(shareVC, animated: true, completion: nil)
     }
     
-    func listentWifiConnectionStatus() {
+    func inspectWifiConnection() {
         NetFlowInspector.shared.addObserver(forKeyPath: String(describing: self)) { [weak self] status in
             status == .connected ? self?.didEstablishWifiConnection() : self?.didLostWifiConnection()
         }
@@ -76,14 +104,32 @@ class StartViewController: BaseViewController {
         wifiLogo.image = UIImage(named: "wifi-slash-logo")
         ipLabel.textColor = .warningColor
         ipLabel.text = uiConst.ipLabelWarningText
-        searchButton.isEnabled = false
+        searchRoomButton.isEnabled = false
     }
     
     func didEstablishWifiConnection() {
         wifiLogo.image = UIImage(named: "wifi-logo")
         ipLabel.textColor = .linkedTextColor
         ipLabel.text = "IP: \(NetFlowInspector.shared.host ?? "0.0.0.0")"
-        searchButton.isEnabled = true
+        searchRoomButton.isEnabled = true
+    }
+    
+    // MARK: - Navigation
+    func openChatRoomViewController(using host: String) {
+        let chatRoomVC = ChatRoomViewController()
+        let navController: BaseNavigationController = Launcher.makeNavController(rootViewController: chatRoomVC)
+        navController.modalPresentationStyle = .fullScreen
+        navController.modalTransitionStyle = .flipHorizontal
+        P2PManager.sharedListener = PeerListener(name: host, passcode: "0", delegate: chatRoomVC)
+        
+        present(navController, animated: true, completion: nil)
+    }
+    
+    func openSearchViewController() {
+        let searchVC = SearchViewController()
+        P2PManager.sharedBrowser = PeerBrowser(delegate: searchVC)
+        
+        navigationController?.pushViewController(searchVC, animated: true)
     }
 }
 
@@ -94,7 +140,7 @@ extension StartViewController {
         
         title = uiConst.title
         setup()
-        listentWifiConnectionStatus()
+        inspectWifiConnection()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -113,7 +159,8 @@ extension StartViewController {
 extension StartViewController {
     private struct UIConstants {
         let title = "Start"
-        let searchText = "Search Host"
+        let searchText = "Search Room"
+        let createText = "Create Room"
         let ipLabelPlaceholder = "Initialize..."
         let ipLabelWarningText = "No connection is available"
     }

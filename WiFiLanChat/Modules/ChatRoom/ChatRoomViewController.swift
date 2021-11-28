@@ -9,11 +9,10 @@ import UIKit
 import Network
 
 class ChatRoomViewController: BaseViewController {
-    private let connection: PeerConnection
-    private let username = ""
     private(set) var messages: [Message] = []
     private(set) var dwgConst = DrawingConstants()
     private let uiConst = UIConstants()
+    private var username: String = ""
     
     private(set) lazy var tableView: UITableView = {
         let view = UITableView()
@@ -37,8 +36,7 @@ class ChatRoomViewController: BaseViewController {
     }()
     
     // MARK: - Initializers
-    init(connection: PeerConnection) {
-        self.connection = connection
+    init() {
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -52,6 +50,48 @@ class ChatRoomViewController: BaseViewController {
             name: UIResponder.keyboardWillChangeFrameNotification,
             object: nil
         )
+    }
+    
+    func showRequest(_ request: JoinRequest?) {
+        guard let request = request else {
+            return
+        }
+        
+        let accept = UIAlertAction(title: "Accept", style: .default) { _ in
+            P2PManager.sharedConnection?.acceptRequest()
+            self.username = request.username
+        }
+        
+        let reject = UIAlertAction(title: "Reject", style: .default) { _ in
+            P2PManager.sharedConnection?.declineRequest()
+            P2PManager.sharedConnection?.cancel()
+            P2PManager.sharedConnection = nil
+        }
+        
+        let title = "Request"
+        let message = "\(request.username) want to join this room at host: \(request.host)"
+        let alert = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert
+        )
+        alert.addAction(accept)
+        alert.addAction(reject)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func insertReceiverCell(_ content: Data) {
+        guard let text = String(data: content, encoding: .utf8) else {
+            return
+        }
+        
+        let message = Message(
+            message: text,
+            messageSender: .someoneElse,
+            username: username
+        )
+        insertNewMessageCell(message)
     }
     
     // MARK: - Actions
@@ -69,7 +109,7 @@ class ChatRoomViewController: BaseViewController {
     }
     
     @objc func closeButtonClicked() {
-        connection.cancel()
+        P2PManager.sharedConnection?.cancel()
         dismiss(animated: true, completion: nil)
     }
 }
@@ -94,13 +134,13 @@ extension ChatRoomViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        connection.delegate = self
+        P2PManager.sharedConnection?.delegate = self
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        let messageBarHeight:CGFloat = 60.0
+        let messageBarHeight: CGFloat = 60.0
         let size = view.bounds.size
         tableView.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height - messageBarHeight - view.safeAreaInsets.bottom)
         messageInputBar.frame = CGRect(x: 0, y: size.height - messageBarHeight - view.safeAreaInsets.bottom, width: size.width, height: messageBarHeight)
@@ -118,16 +158,31 @@ extension ChatRoomViewController: PeerConnectionDelegate {
     
     func receivedMessage(content: Data?, message: NWProtocolFramer.Message) {
         guard let content = content else { return }
-        guard let text = String(data: content, encoding: .utf8) else { return }
-        let message = Message(message: text, messageSender: .someoneElse, username: username)
-        insertNewMessageCell(message)
+        
+        switch message.type {
+        case .invalid:
+            break
+            
+        case .joinRequest:
+            showRequest(content.convertToJoinRequest)
+            
+        case .message:
+            insertReceiverCell(content)
+            
+        default:
+            break
+        }
+    }
+    
+    func displayAdvertiseError(_ error: NWError) {
+        
     }
 }
 
 // MARK: - Message Input Bar
 extension ChatRoomViewController: MessageInputDelegate {
     func sendWasTapped(message: String) {
-        connection.send(message)
+        P2PManager.sharedConnection?.send(message)
         let message = Message(message: message, messageSender: .ourself, username: username)
         insertNewMessageCell(message)
     }

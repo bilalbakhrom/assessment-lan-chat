@@ -1,5 +1,5 @@
 //
-//  ChatProtocol.swift
+//  ChatNWProtocol.swift
 //  WiFiLanChat
 //
 //  Created by Bilol Mamadjanov on 28/11/21.
@@ -9,14 +9,17 @@ import Foundation
 import Network
 
 /// Define the types of commands
-enum MessageType: UInt32 {
+enum ChatNWMessageType: UInt32 {
     case invalid = 0
+    case joinRequest
+    case acceptRequest
+    case declineRequest
     case message
 }
 
-class ChatProtocol: NWProtocolFramerImplementation {
+class ChatNWProtocol: NWProtocolFramerImplementation {
     /// A global definition of chat protocol to add to connections.
-    static let definition = NWProtocolFramer.Definition(implementation: ChatProtocol.self)
+    static let definition = NWProtocolFramer.Definition(implementation: ChatNWProtocol.self)
     /// Set a name for protocol for use in debugging.
     static var label: String { "WiFiLanChat" }
     
@@ -30,8 +33,8 @@ class ChatProtocol: NWProtocolFramerImplementation {
     func handleInput(framer: NWProtocolFramer.Instance) -> Int {
         while true {
             // Try to read out a single header.
-            var tempHeader: ChatProtocolHeader? = nil
-            let headerSize = ChatProtocolHeader.encodedSize
+            var tempHeader: ChatNWProtocolHeader? = nil
+            let headerSize = ChatNWProtocolHeader.encodedSize
             let parsed = framer.parseInput(minimumIncompleteLength: headerSize,
                                            maximumLength: headerSize) { (buffer, isComplete) -> Int in
                 guard let buffer = buffer else {
@@ -40,18 +43,16 @@ class ChatProtocol: NWProtocolFramerImplementation {
                 if buffer.count < headerSize {
                     return 0
                 }
-                tempHeader = ChatProtocolHeader(buffer)
+                tempHeader = ChatNWProtocolHeader(buffer)
                 return headerSize
             }
 
             // If you can't parse out a complete header, stop parsing and ask for headerSize more bytes.
-            guard parsed, let header = tempHeader else {
-                return headerSize
-            }
+            guard parsed, let header = tempHeader else { return headerSize }
 
             // Create an object to deliver the message.
-            var messageType = MessageType.invalid
-            if let parsedMessageType = MessageType(rawValue: header.type) {
+            var messageType = ChatNWMessageType.invalid
+            if let parsedMessageType = ChatNWMessageType(rawValue: header.type) {
                 messageType = parsedMessageType
             }
             let message = NWProtocolFramer.Message(messageType: messageType)
@@ -65,10 +66,10 @@ class ChatProtocol: NWProtocolFramerImplementation {
     
     func handleOutput(framer: NWProtocolFramer.Instance, message: NWProtocolFramer.Message, messageLength: Int, isComplete: Bool) {
         // Extract the type of message.
-        let type = message.messageType
+        let type = message.type
 
         // Create a header using the type and length.
-        let header = ChatProtocolHeader(type: type.rawValue, length: UInt32(messageLength))
+        let header = ChatNWProtocolHeader(type: type.rawValue, length: UInt32(messageLength))
 
         // Write the header.
         framer.writeOutput(data: header.encodedData)
@@ -84,13 +85,14 @@ class ChatProtocol: NWProtocolFramerImplementation {
 
 // Extend framer messages to handle storing your command types in the message metadata.
 extension NWProtocolFramer.Message {
-    convenience init(messageType: MessageType) {
-        self.init(definition: ChatProtocol.definition)
-        self["MessageType"] = messageType
+    convenience init(messageType: ChatNWMessageType) {
+        self.init(definition: ChatNWProtocol.definition)
+        self["ChatNWMessageType"] = messageType
     }
 
-    var messageType: MessageType {
-        if let type = self["MessageType"] as? MessageType {
+    /// A value that indicates to`ChatNWMessageType`
+    var type: ChatNWMessageType {
+        if let type = self["ChatNWMessageType"] as? ChatNWMessageType {
             return type
         } else {
             return .invalid
@@ -98,9 +100,7 @@ extension NWProtocolFramer.Message {
     }
 }
 
-
-// Define a protocol header struct to help encode and decode bytes.
-struct ChatProtocolHeader: Codable {
+struct ChatNWProtocolHeader: Codable {
     let type: UInt32
     let length: UInt32
 

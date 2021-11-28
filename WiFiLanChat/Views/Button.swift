@@ -9,7 +9,7 @@ import UIKit
 
 class Button: UIButton {
     private var shadowLayer: CAShapeLayer!
-    private let const: Constants
+    private var const: Constants
     
     override var isEnabled: Bool {
         didSet {
@@ -17,11 +17,11 @@ class Button: UIButton {
         }
     }
     
-    override init(frame: CGRect) {
+    init() {
         const = Constants()
-        super.init(frame: frame)
-                
-        backgroundColor = .white
+        super.init(frame: .zero)
+        
+        self.backgroundColor = .white
         layer.cornerRadius = const.cornerRadius
     }
     
@@ -35,8 +35,8 @@ class Button: UIButton {
         guard shadowLayer == nil else { return }
         shadowLayer = CAShapeLayer()
         shadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: layer.cornerRadius).cgPath
-        shadowLayer.fillColor = UIColor.white.cgColor
-        shadowLayer.shadowColor = UIColor.black.cgColor
+        shadowLayer.fillColor = (backgroundColor ?? .white).cgColor
+        shadowLayer.shadowColor = (backgroundColor ?? .black).cgColor
         shadowLayer.shadowPath = shadowLayer.path
         shadowLayer.shadowOffset = const.shadowOffset
         shadowLayer.shadowOpacity = const.shadowOpacity
@@ -59,8 +59,8 @@ extension Button {
     private struct Constants {
         let cornerRadius: CGFloat = 8
         let shadowOffset = CGSize(width: 0, height: 5)
-        let shadowOpacity: Float = 0.4
+        let shadowOpacity: Float = 0.33
         let blur: CGFloat = 19
-        let fontSize: CGFloat = 17
+        let fontSize: CGFloat = 16
     }
 }

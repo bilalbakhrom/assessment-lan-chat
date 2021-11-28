@@ -12,14 +12,31 @@ protocol PeerConnectionDelegate: AnyObject {
     func connectionReady()
     func connectionFailed()
     func receivedMessage(content: Data?, message: NWProtocolFramer.Message)
+    func displayAdvertiseError(_ error: NWError)
 }
 
 class PeerConnection {
     private var connection: NWConnection?
     weak var delegate: PeerConnectionDelegate?
+    let initiatedConnection: Bool
     
-    init(host: String, port: UInt16) {
-        connection = makeNWConnection(host: host, port: port)
+    // Create an outbound connection when the user initiates a game.
+    init(endpoint: NWEndpoint, interface: NWInterface?, passcode: String, delegate: PeerConnectionDelegate) {
+        self.delegate = delegate
+        self.initiatedConnection = true
+
+        let connection = NWConnection(to: endpoint, using: NWParameters(passcode: passcode))
+        self.connection = connection
+
+        startConnection()
+    }
+    
+    // Handle an inbound connection when the user receives a game request.
+    init(connection: NWConnection, delegate: PeerConnectionDelegate) {
+        self.delegate = delegate
+        self.connection = connection
+        self.initiatedConnection = false
+
         startConnection()
     }
     
@@ -59,27 +76,56 @@ class PeerConnection {
         guard let connection = connection else {
             return
         }
-
-        // Create a message object to hold the command type.
+        
         let content = message.data(using: .utf8)
         let message = NWProtocolFramer.Message(messageType: .message)
-        let context = NWConnection.ContentContext(identifier: "Move", metadata: [message])
+        let context = NWConnection.ContentContext(identifier: "Message", metadata: [message])
 
         // Send the application content along with the message.
         connection.send(content: content, contentContext: context, isComplete: true, completion: .idempotent)
     }
-
-    /// Creates a new bidirectional data connection
-    /// - Parameters:
-    ///   - hostString: A name or address that identifies a network endpoint
-    ///   - portInteger: A port number you use along with a host to identify a network endpoint.
-    /// - Returns: Returns a connection instance
-    private func makeNWConnection(host hostString: String, port portInteger: UInt16) -> NWConnection {
-        NWConnection(
-            host: NWEndpoint.Host(hostString),
-            port: NWEndpoint.Port(integerLiteral: portInteger),
-            using: .udp
-        )
+    
+    /// Sends join request via created connection
+    /// - Parameter request: The request to send
+    func sendRequest(_ request: JoinRequest) {
+        guard let connection = connection else {
+            return
+        }
+        
+        let content = request.json?.data(using: .utf8)
+        let message = NWProtocolFramer.Message(messageType: .joinRequest)
+        let context = NWConnection.ContentContext(identifier: "Request", metadata: [message])
+        
+        // Send the application content along with the message.
+        connection.send(content: content, contentContext: context, isComplete: true, completion: .idempotent)
+    }
+    
+    /// Accepts request
+    func acceptRequest() {
+        guard let connection = connection else {
+            return
+        }
+        
+        let content = "Accept".data(using: .utf8)
+        let message = NWProtocolFramer.Message(messageType: .acceptRequest)
+        let context = NWConnection.ContentContext(identifier: "Accept", metadata: [message])
+        
+        // Send the application content along with the message.
+        connection.send(content: content, contentContext: context, isComplete: true, completion: .idempotent)
+    }
+    
+    /// Declines request
+    func declineRequest() {
+        guard let connection = connection else {
+            return
+        }
+        
+        let content = "Decline".data(using: .utf8)
+        let message = NWProtocolFramer.Message(messageType: .declineRequest)
+        let context = NWConnection.ContentContext(identifier: "Decline", metadata: [message])
+        
+        // Send the application content along with the message.
+        connection.send(content: content, contentContext: context, isComplete: true, completion: .idempotent)
     }
     
     /// Receives a message.
@@ -90,7 +136,7 @@ class PeerConnection {
 
         connection.receiveMessage { (content, context, isComplete, error) in
             // Extract message type from the received context.
-            if let message = context?.protocolMetadata(definition: ChatProtocol.definition) as? NWProtocolFramer.Message {
+            if let message = context?.protocolMetadata(definition: ChatNWProtocol.definition) as? NWProtocolFramer.Message {
                 self.delegate?.receivedMessage(content: content, message: message)
             }
             

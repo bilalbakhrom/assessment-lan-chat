@@ -39,7 +39,15 @@
 		1364D03327526B1B000208D6 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D03227526B1B000208D6 /* Label.swift */; };
 		1364D03527526B2F000208D6 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D03427526B2F000208D6 /* Message.swift */; };
 		1364D04127533CB0000208D6 /* NWParametersExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D04027533CB0000208D6 /* NWParametersExtension.swift */; };
-		1364D04327534728000208D6 /* ChatProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D04227534727000208D6 /* ChatProtocol.swift */; };
+		1364D04327534728000208D6 /* ChatNWProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D04227534727000208D6 /* ChatNWProtocol.swift */; };
+		1364D04527534F5D000208D6 /* PeerListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D04427534F5D000208D6 /* PeerListener.swift */; };
+		1364D04727534FEC000208D6 /* P2PManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D04627534FEC000208D6 /* P2PManager.swift */; };
+		1364D0492753507C000208D6 /* PeerBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D0482753507C000208D6 /* PeerBrowser.swift */; };
+		1364D04B2753854B000208D6 /* JoinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D04A2753854B000208D6 /* JoinRequest.swift */; };
+		1364D04D2753863B000208D6 /* JSONProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D04C2753863B000208D6 /* JSONProtocol.swift */; };
+		1364D04F27538C54000208D6 /* NWBrowser.ResultExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D04E27538C54000208D6 /* NWBrowser.ResultExtension.swift */; };
+		1364D051275390C0000208D6 /* SearchViewController+CES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D050275390C0000208D6 /* SearchViewController+CES.swift */; };
+		1364D053275396D9000208D6 /* DataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D052275396D9000208D6 /* DataExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,7 +104,15 @@
 		1364D03227526B1B000208D6 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		1364D03427526B2F000208D6 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		1364D04027533CB0000208D6 /* NWParametersExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NWParametersExtension.swift; sourceTree = "<group>"; };
-		1364D04227534727000208D6 /* ChatProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatProtocol.swift; sourceTree = "<group>"; };
+		1364D04227534727000208D6 /* ChatNWProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatNWProtocol.swift; sourceTree = "<group>"; };
+		1364D04427534F5D000208D6 /* PeerListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerListener.swift; sourceTree = "<group>"; };
+		1364D04627534FEC000208D6 /* P2PManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P2PManager.swift; sourceTree = "<group>"; };
+		1364D0482753507C000208D6 /* PeerBrowser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerBrowser.swift; sourceTree = "<group>"; };
+		1364D04A2753854B000208D6 /* JoinRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRequest.swift; sourceTree = "<group>"; };
+		1364D04C2753863B000208D6 /* JSONProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONProtocol.swift; sourceTree = "<group>"; };
+		1364D04E27538C54000208D6 /* NWBrowser.ResultExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NWBrowser.ResultExtension.swift; sourceTree = "<group>"; };
+		1364D050275390C0000208D6 /* SearchViewController+CES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewController+CES.swift"; sourceTree = "<group>"; };
+		1364D052275396D9000208D6 /* DataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +239,7 @@
 			children = (
 				1353F295275157660036001F /* SearchViewController.swift */,
 				1353F2A8275214E80036001F /* SearchViewController+Layout.swift */,
+				1364D050275390C0000208D6 /* SearchViewController+CES.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -243,6 +260,8 @@
 				1353F2AB27521E990036001F /* IfaddrsExtension.swift */,
 				1364D02527523CA7000208D6 /* StringExtension.swift */,
 				1364D04027533CB0000208D6 /* NWParametersExtension.swift */,
+				1364D04E27538C54000208D6 /* NWBrowser.ResultExtension.swift */,
+				1364D052275396D9000208D6 /* DataExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -266,6 +285,7 @@
 			children = (
 				1353F2A42751EB960036001F /* NetFlowInspector.swift */,
 				1353F2A62751FDEC0036001F /* NetFlowInstpectable.swift */,
+				1364D04627534FEC000208D6 /* P2PManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -274,8 +294,12 @@
 			isa = PBXGroup;
 			children = (
 				1364D02927525B32000208D6 /* PeerConnection.swift */,
-				1364D04227534727000208D6 /* ChatProtocol.swift */,
+				1364D04427534F5D000208D6 /* PeerListener.swift */,
+				1364D0482753507C000208D6 /* PeerBrowser.swift */,
+				1364D04227534727000208D6 /* ChatNWProtocol.swift */,
 				1364D03427526B2F000208D6 /* Message.swift */,
+				1364D04A2753854B000208D6 /* JoinRequest.swift */,
+				1364D04C2753863B000208D6 /* JSONProtocol.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -432,22 +456,30 @@
 				1364D04127533CB0000208D6 /* NWParametersExtension.swift in Sources */,
 				1353F29D27515A7C0036001F /* Colors.swift in Sources */,
 				1364D02A27525B32000208D6 /* PeerConnection.swift in Sources */,
+				1364D04B2753854B000208D6 /* JoinRequest.swift in Sources */,
+				1364D0492753507C000208D6 /* PeerBrowser.swift in Sources */,
 				1353F296275157660036001F /* SearchViewController.swift in Sources */,
 				1353F29A275158A00036001F /* StartViewController+Layout.swift in Sources */,
 				1364D02F275269E5000208D6 /* MessageInputView.swift in Sources */,
 				1364D02427523B1C000208D6 /* TextField.swift in Sources */,
+				1364D04F27538C54000208D6 /* NWBrowser.ResultExtension.swift in Sources */,
 				1307B5C12750E8FA003EEFE2 /* StartViewController.swift in Sources */,
 				1364D03327526B1B000208D6 /* Label.swift in Sources */,
 				1353F28D2751524A0036001F /* BaseViewController.swift in Sources */,
+				1364D04527534F5D000208D6 /* PeerListener.swift in Sources */,
 				1364D02C27526684000208D6 /* ChatRoomViewController+Layout.swift in Sources */,
 				1353F2AE275228750036001F /* BaseNavigationController.swift in Sources */,
 				1353F292275155130036001F /* Launcher.swift in Sources */,
 				1364D03127526AFE000208D6 /* MessageTableViewCell.swift in Sources */,
+				1364D04D2753863B000208D6 /* JSONProtocol.swift in Sources */,
+				1364D051275390C0000208D6 /* SearchViewController+CES.swift in Sources */,
 				1307B5BD2750E8FA003EEFE2 /* AppDelegate.swift in Sources */,
 				1364D02227523B05000208D6 /* IPField.swift in Sources */,
 				1307B5BF2750E8FA003EEFE2 /* SceneDelegate.swift in Sources */,
-				1364D04327534728000208D6 /* ChatProtocol.swift in Sources */,
+				1364D053275396D9000208D6 /* DataExtension.swift in Sources */,
+				1364D04327534728000208D6 /* ChatNWProtocol.swift in Sources */,
 				1353F2A72751FDEC0036001F /* NetFlowInstpectable.swift in Sources */,
+				1364D04727534FEC000208D6 /* P2PManager.swift in Sources */,
 				1364D03527526B2F000208D6 /* Message.swift in Sources */,
 				1353F2A52751EB960036001F /* NetFlowInspector.swift in Sources */,
 				1353F2A227515C920036001F /* Button.swift in Sources */,
@@ -626,6 +658,7 @@
 				DEVELOPMENT_TEAM = 2MDZ96HH4V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WiFiLanChat/Info.plist;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "WiFiLanChat uses the local network to connect with users around you.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -654,6 +687,7 @@
 				DEVELOPMENT_TEAM = 2MDZ96HH4V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WiFiLanChat/Info.plist;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "WiFiLanChat uses the local network to connect with users around you.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

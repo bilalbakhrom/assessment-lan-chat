@@ -53,7 +53,7 @@ class StartViewControllerTests: XCTestCase {
         expectation(for: myPredicate, evaluatedWith: sut.navigationController)
         
         // When
-        sut.searchButton.sendActions(for: .touchUpInside)
+        sut.searchRoomButton.sendActions(for: .touchUpInside)
         
         // Then
         waitForExpectations(timeout: 2)
