@@ -7,17 +7,23 @@
 
 extension SearchViewController {
     enum ConnectionEstablishmentState {
-        case creatingRequest
+        case searching
         case waiting
+        case connecting
+        case failed
         case connected
         case none
         
         var title: String {
             switch self {
-            case .creatingRequest:
-                return "Creating request"
+            case .searching:
+                return "Searching host"
             case .waiting:
-                return "Pending"
+                return "Waiting to connect"
+            case .connecting:
+                return "Connecting"
+            case .failed:
+                return "Failed"
             case .connected:
                 return "Connected"
             case .none:

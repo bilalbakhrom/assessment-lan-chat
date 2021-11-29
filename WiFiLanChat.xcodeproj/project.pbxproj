@@ -48,6 +48,7 @@
 		1364D04F27538C54000208D6 /* NWBrowser.ResultExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D04E27538C54000208D6 /* NWBrowser.ResultExtension.swift */; };
 		1364D051275390C0000208D6 /* SearchViewController+CES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D050275390C0000208D6 /* SearchViewController+CES.swift */; };
 		1364D053275396D9000208D6 /* DataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D052275396D9000208D6 /* DataExtension.swift */; };
+		1364D05527544B6E000208D6 /* ButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D05427544B6E000208D6 /* ButtonExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +114,7 @@
 		1364D04E27538C54000208D6 /* NWBrowser.ResultExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NWBrowser.ResultExtension.swift; sourceTree = "<group>"; };
 		1364D050275390C0000208D6 /* SearchViewController+CES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewController+CES.swift"; sourceTree = "<group>"; };
 		1364D052275396D9000208D6 /* DataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtension.swift; sourceTree = "<group>"; };
+		1364D05427544B6E000208D6 /* ButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -262,6 +264,7 @@
 				1364D04027533CB0000208D6 /* NWParametersExtension.swift */,
 				1364D04E27538C54000208D6 /* NWBrowser.ResultExtension.swift */,
 				1364D052275396D9000208D6 /* DataExtension.swift */,
+				1364D05427544B6E000208D6 /* ButtonExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -456,6 +459,7 @@
 				1364D04127533CB0000208D6 /* NWParametersExtension.swift in Sources */,
 				1353F29D27515A7C0036001F /* Colors.swift in Sources */,
 				1364D02A27525B32000208D6 /* PeerConnection.swift in Sources */,
+				1364D05527544B6E000208D6 /* ButtonExtension.swift in Sources */,
 				1364D04B2753854B000208D6 /* JoinRequest.swift in Sources */,
 				1364D0492753507C000208D6 /* PeerBrowser.swift in Sources */,
 				1353F296275157660036001F /* SearchViewController.swift in Sources */,

@@ -11,10 +11,7 @@ import Network
 /// Define the types of commands
 enum ChatNWMessageType: UInt32 {
     case invalid = 0
-    case joinRequest
-    case acceptRequest
-    case declineRequest
-    case message
+    case message = 1
 }
 
 class ChatNWProtocol: NWProtocolFramerImplementation {

@@ -85,49 +85,6 @@ class PeerConnection {
         connection.send(content: content, contentContext: context, isComplete: true, completion: .idempotent)
     }
     
-    /// Sends join request via created connection
-    /// - Parameter request: The request to send
-    func sendRequest(_ request: JoinRequest) {
-        guard let connection = connection else {
-            return
-        }
-        
-        let content = request.json?.data(using: .utf8)
-        let message = NWProtocolFramer.Message(messageType: .joinRequest)
-        let context = NWConnection.ContentContext(identifier: "Request", metadata: [message])
-        
-        // Send the application content along with the message.
-        connection.send(content: content, contentContext: context, isComplete: true, completion: .idempotent)
-    }
-    
-    /// Accepts request
-    func acceptRequest() {
-        guard let connection = connection else {
-            return
-        }
-        
-        let content = "Accept".data(using: .utf8)
-        let message = NWProtocolFramer.Message(messageType: .acceptRequest)
-        let context = NWConnection.ContentContext(identifier: "Accept", metadata: [message])
-        
-        // Send the application content along with the message.
-        connection.send(content: content, contentContext: context, isComplete: true, completion: .idempotent)
-    }
-    
-    /// Declines request
-    func declineRequest() {
-        guard let connection = connection else {
-            return
-        }
-        
-        let content = "Decline".data(using: .utf8)
-        let message = NWProtocolFramer.Message(messageType: .declineRequest)
-        let context = NWConnection.ContentContext(identifier: "Decline", metadata: [message])
-        
-        // Send the application content along with the message.
-        connection.send(content: content, contentContext: context, isComplete: true, completion: .idempotent)
-    }
-    
     /// Receives a message.
     ///
     /// It will continue to receive more messages untill receive an error.
@@ -136,9 +93,9 @@ class PeerConnection {
 
         connection.receiveMessage { (content, context, isComplete, error) in
             // Extract message type from the received context.
-            if let message = context?.protocolMetadata(definition: ChatNWProtocol.definition) as? NWProtocolFramer.Message {
-                self.delegate?.receivedMessage(content: content, message: message)
-            }
+//            if let message = context?.protocolMetadata(definition: ChatNWProtocol.definition) as? NWProtocolFramer.Message {
+            self.delegate?.receivedMessage(content: content, message: .init(messageType: .message))
+//            }
             
             if error == nil {
                 self.receiveNextMessage()

@@ -44,15 +44,6 @@ class Button: UIButton {
         
         layer.insertSublayer(shadowLayer, at: 0)
     }
-    
-    func set(title: String, color: UIColor = UIColor.white) {
-        let attributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: const.fontSize, weight: .semibold),
-            .foregroundColor: color
-        ]
-        let attributedTitle = NSAttributedString(string: title, attributes: attributes)
-        setAttributedTitle(attributedTitle, for: .normal)
-    }
 }
 
 extension Button {

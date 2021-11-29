@@ -64,8 +64,6 @@ class PeerListener {
                         P2PManager.sharedConnection = PeerConnection(connection: newConnection, delegate: delegate)
                     } else {
                         // If a chat is already in progress, reject it.
-                        let connection = PeerConnection(connection: newConnection, delegate: delegate)
-                        connection.declineRequest()
                         newConnection.cancel()
                     }
                 }

@@ -47,7 +47,6 @@ class PeerBrowser {
                 }
                 
             case .ready:
-                // Post initial results.
                 self.delegate?.refreshResults(results: browser.browseResults)
                 
             case .cancelled:

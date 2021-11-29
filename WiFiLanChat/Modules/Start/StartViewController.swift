@@ -23,7 +23,7 @@ class StartViewController: BaseViewController {
     
     private(set) lazy var createRoomButton: Button = {
         let view = Button()
-        view.set(title: uiConst.createText.uppercased())
+        view.set(title: uiConst.createText.uppercased(), color: .white)
         view.addTarget(self, action: #selector(createRoom), for: .touchUpInside)
         view.backgroundColor = .systemGreen
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -126,9 +126,7 @@ class StartViewController: BaseViewController {
     }
     
     func openSearchViewController() {
-        let searchVC = SearchViewController()
-        P2PManager.sharedBrowser = PeerBrowser(delegate: searchVC)
-        
+        let searchVC = SearchViewController()        
         navigationController?.pushViewController(searchVC, animated: true)
     }
 }
@@ -145,7 +143,7 @@ extension StartViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        P2PManager.cancel()
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
