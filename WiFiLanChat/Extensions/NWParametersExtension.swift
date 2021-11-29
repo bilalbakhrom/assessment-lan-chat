@@ -15,16 +15,15 @@ extension NWParameters {
         let tcpOptions = NWProtocolTCP.Options()
         tcpOptions.enableKeepalive = true
         tcpOptions.keepaliveIdle = 2
-        
+
         // Create parameters with custom TLS and TCP options.
         self.init(tls: NWParameters.tlsOptions(passcode: passcode), tcp: tcpOptions)
-        
+
         // Enable using a peer-to-peer link.
         self.includePeerToPeer = true
-        
-        // Add your custom chat protocol to support chat messages.
-        let definition = NWProtocolFramer.Definition(implementation: ChatFramer.self)
-        let options = NWProtocolFramer.Options(definition: definition)
+
+        // Add your custom game protocol to support game messages.
+        let options = NWProtocolFramer.Options(definition: ChatFramer.definition)
         self.defaultProtocolStack.applicationProtocols.insert(options, at: 0)
     }
     

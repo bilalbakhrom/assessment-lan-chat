@@ -80,7 +80,10 @@ class PeerConnection {
         guard let connection = connection else { return }
 
         connection.receiveMessage { (content, context, isComplete, error) in
-            self.delegate?.receivedMessage(content: content, message: .init(messageType: .message))
+            // Extract your message type from the received context.
+            if let message = context?.protocolMetadata(definition: ChatFramer.definition) as? NWProtocolFramer.Message {
+                self.delegate?.receivedMessage(content: content, message: message)
+            }
 
             if error == nil {
                 self.receiveNextMessage()

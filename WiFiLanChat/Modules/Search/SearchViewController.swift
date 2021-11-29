@@ -201,7 +201,7 @@ extension SearchViewController {
     }
     
     private func showAlert_couldNotConnect() {
-        showAlert(title: "Request Error",
+        showAlert(title: "Host is busy",
                   message: "Could not connect to host:\n\(receiverHost)\nPlease, try again",
                   handler: { _ in self.state = .none })
     }

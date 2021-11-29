@@ -195,7 +195,7 @@ extension ChatRoomViewController: PeerConnectionDelegate {
     }
     
     func connectionCanceled() {
-        
+        print("Canceled")
     }
     
     func receivedMessage(content: Data?, message: NWProtocolFramer.Message) {
