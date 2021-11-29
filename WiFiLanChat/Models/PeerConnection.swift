@@ -18,6 +18,15 @@ class PeerConnection {
     /// The object that acts as the delegate of the connection.
     weak var delegate: PeerConnectionDelegate?
     
+    /// The interface name
+    var name: String? {
+        if case let NWEndpoint.service(name, _, _, _) = connection.endpoint {
+            return name
+        } else {
+            return nil
+        }
+    }
+    
     /// Create an outbound connection when the user initiates a game.
     init(endpoint: NWEndpoint, interface: NWInterface?, passcode: String, delegate: PeerConnectionDelegate) {
         self.delegate = delegate
@@ -30,7 +39,7 @@ class PeerConnection {
     init(connection: NWConnection, delegate: PeerConnectionDelegate) {
         self.delegate = delegate
         self.connection = connection
-
+        
         startConnection()
     }
     

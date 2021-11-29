@@ -16,7 +16,7 @@ class PeerListener {
     /// Bonjour service type use to browse and create listener service
     static let serviceType: String = "_wifilanchat._tcp"
     /// Bonjour service name
-    private var name: String
+    private(set) var name: String
     /// Bonjour service parameter
     private let passcode: String
     /// An object to handle incoming connection

@@ -64,7 +64,7 @@ class ChatRoomViewController: BaseViewController {
         let view = UILabel()
         view.font = .systemFont(ofSize: 12, weight: .medium)
         view.textColor = .gray
-        view.text = NetFlowInspector.shared.host
+        view.text = (listener?.name ?? connection?.name)
         view.textAlignment = .center
         
         return view

@@ -152,7 +152,7 @@ extension SearchViewController: PeerBrowserDelegate {
         guard let host = NetFlowInspector.shared.host else { return }
         self.results = [NWBrowser.Result]()
         for result in results {
-            if case let NWEndpoint.service(name: name, type: _, domain: _, interface: _) = result.endpoint {
+            if case let NWEndpoint.service(name,_,_,_) = result.endpoint {
                 if name != host {
                     self.results.append(result)
                 }
