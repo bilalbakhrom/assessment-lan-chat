@@ -166,11 +166,19 @@ extension ChatRoomViewController {
 
 extension ChatRoomViewController: PeerConnectionDelegate {
     func connectionReady() {
-        print("Connected")
+        
     }
     
     func connectionFailed() {
-        print("Failed")
+        
+    }
+    
+    func connectionPreparing() {
+        
+    }
+    
+    func connectionCanceled() {
+        
     }
     
     func receivedMessage(content: Data?, message: NWProtocolFramer.Message) {

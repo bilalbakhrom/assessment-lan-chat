@@ -84,7 +84,7 @@ class SearchViewController: BaseViewController {
         navController.modalPresentationStyle = .fullScreen
         navController.modalTransitionStyle = .flipHorizontal
         P2PManager.sharedConnection?.delegate = chatRoomVC
-        
+
         present(navController, animated: true, completion: nil)
     }
 }
@@ -144,6 +144,14 @@ extension SearchViewController: PeerBrowserDelegate {
 
 // MARK: - PeerConnectionDelegate
 extension SearchViewController: PeerConnectionDelegate {
+    func receivedMessage(content: Data?, message: NWProtocolFramer.Message) {
+        
+    }
+    
+    func displayAdvertiseError(_ error: NWError) {
+        
+    }
+    
     func connectionReady() {
         state = .connected
         openChatRoomViewController()
@@ -158,8 +166,13 @@ extension SearchViewController: PeerConnectionDelegate {
         P2PManager.sharedConnection = nil
     }
     
-    func displayAdvertiseError(_ error: NWError) {}
-    func receivedMessage(content: Data?, message: NWProtocolFramer.Message) { }
+    func connectionPreparing() {
+        
+    }
+    
+    func connectionCanceled() {
+        
+    }
 }
 
 // MARK: - Error Messages

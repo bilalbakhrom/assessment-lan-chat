@@ -15,7 +15,7 @@ class P2PManager {
     static func cancel() {
         sharedBrowser?.browser?.cancel()
         sharedConnection?.cancel()
-        sharedListener?.listener?.cancel()
+        sharedListener?.cancel()
         
         sharedBrowser = nil
         sharedConnection = nil

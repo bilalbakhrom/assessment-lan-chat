@@ -50,6 +50,9 @@
 		1364D0592754591D000208D6 /* BoxView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D0582754591D000208D6 /* BoxView+Layout.swift */; };
 		1364D05D27545F8F000208D6 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D05C27545F8F000208D6 /* Animator.swift */; };
 		1364D05F27545FAF000208D6 /* FadeInOutAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D05E27545FAF000208D6 /* FadeInOutAnimator.swift */; };
+		13E91DAF2754D86C006845ED /* NWConnectionStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E91DAE2754D86C006845ED /* NWConnectionStateDelegate.swift */; };
+		13E91DB12754D875006845ED /* MessageReceiverDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E91DB02754D875006845ED /* MessageReceiverDelegate.swift */; };
+		13E91DB32754D87D006845ED /* AdvertiseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E91DB22754D87D006845ED /* AdvertiseDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +120,9 @@
 		1364D0582754591D000208D6 /* BoxView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BoxView+Layout.swift"; sourceTree = "<group>"; };
 		1364D05C27545F8F000208D6 /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		1364D05E27545FAF000208D6 /* FadeInOutAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeInOutAnimator.swift; sourceTree = "<group>"; };
+		13E91DAE2754D86C006845ED /* NWConnectionStateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NWConnectionStateDelegate.swift; sourceTree = "<group>"; };
+		13E91DB02754D875006845ED /* MessageReceiverDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageReceiverDelegate.swift; sourceTree = "<group>"; };
+		13E91DB22754D87D006845ED /* AdvertiseDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertiseDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -298,10 +304,10 @@
 		1353F2AA275215A50036001F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				13E91DAD2754D860006845ED /* Protocols */,
 				1364D02927525B32000208D6 /* PeerConnection.swift */,
 				1364D04427534F5D000208D6 /* PeerListener.swift */,
 				1364D0482753507C000208D6 /* PeerBrowser.swift */,
-				1364D04227534727000208D6 /* ChatNWProtocol.swift */,
 				1364D03427526B2F000208D6 /* Message.swift */,
 			);
 			path = Models;
@@ -339,6 +345,17 @@
 				1364D05E27545FAF000208D6 /* FadeInOutAnimator.swift */,
 			);
 			path = Animators;
+			sourceTree = "<group>";
+		};
+		13E91DAD2754D860006845ED /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				13E91DAE2754D86C006845ED /* NWConnectionStateDelegate.swift */,
+				13E91DB02754D875006845ED /* MessageReceiverDelegate.swift */,
+				13E91DB22754D87D006845ED /* AdvertiseDelegate.swift */,
+				1364D04227534727000208D6 /* ChatNWProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -476,8 +493,10 @@
 				1353F2AC27521E990036001F /* IfaddrsExtension.swift in Sources */,
 				1353F2A9275214E80036001F /* SearchViewController+Layout.swift in Sources */,
 				1364D04127533CB0000208D6 /* NWParametersExtension.swift in Sources */,
+				13E91DB12754D875006845ED /* MessageReceiverDelegate.swift in Sources */,
 				1353F29D27515A7C0036001F /* Colors.swift in Sources */,
 				1364D02A27525B32000208D6 /* PeerConnection.swift in Sources */,
+				13E91DAF2754D86C006845ED /* NWConnectionStateDelegate.swift in Sources */,
 				1364D05527544B6E000208D6 /* ButtonExtension.swift in Sources */,
 				1364D0572754581F000208D6 /* BoxView.swift in Sources */,
 				1364D0492753507C000208D6 /* PeerBrowser.swift in Sources */,
@@ -487,6 +506,7 @@
 				1364D02427523B1C000208D6 /* TextField.swift in Sources */,
 				1364D04F27538C54000208D6 /* NWBrowser.ResultExtension.swift in Sources */,
 				1307B5C12750E8FA003EEFE2 /* StartViewController.swift in Sources */,
+				13E91DB32754D87D006845ED /* AdvertiseDelegate.swift in Sources */,
 				1364D03327526B1B000208D6 /* Label.swift in Sources */,
 				1353F28D2751524A0036001F /* BaseViewController.swift in Sources */,
 				1364D04527534F5D000208D6 /* PeerListener.swift in Sources */,

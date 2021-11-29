@@ -8,67 +8,44 @@
 import Foundation
 import Network
 
-protocol PeerConnectionDelegate: AnyObject {
-    func connectionReady()
-    func connectionFailed()
-    func receivedMessage(content: Data?, message: NWProtocolFramer.Message)
-    func displayAdvertiseError(_ error: NWError)
-}
+protocol PeerConnectionDelegate: NWConnectionStateDelegate, MessageReceiverDelegate, AdvertiseDelegate {}
 
+/// We will use this class to connect peers to send/receive data between them.
+/// Data connection will be a bidirectional. Sent/Recieved data type will `Data`.
 class PeerConnection {
-    private var connection: NWConnection?
+    private var connection: NWConnection!
     weak var delegate: PeerConnectionDelegate?
-    let initiatedConnection: Bool
     
-    // Create an outbound connection when the user initiates a game.
+    /// Create an outbound connection when the user initiates a game.
     init(endpoint: NWEndpoint, interface: NWInterface?, passcode: String, delegate: PeerConnectionDelegate) {
         self.delegate = delegate
-        self.initiatedConnection = true
-
-        let connection = NWConnection(to: endpoint, using: NWParameters(passcode: passcode))
-        self.connection = connection
-
+        self.connection = NWConnection(to: endpoint, using: NWParameters(passcode: passcode))
+        
         startConnection()
     }
     
-    // Handle an inbound connection when the user receives a game request.
+    /// Handle an inbound connection when the user receives a game request.
     init(connection: NWConnection, delegate: PeerConnectionDelegate) {
         self.delegate = delegate
         self.connection = connection
-        self.initiatedConnection = false
 
         startConnection()
     }
     
     /// Handle the user exiting the chat room.
     func cancel() {
-        if let connection = self.connection {
-            connection.cancel()
-            self.connection = nil
-        }
+        connection.cancel()
+        connection = nil
     }
     
     /// Starts the peer-to-peer connection for both inbound and outbound connections.
     func startConnection() {
         guard let connection = connection else { return }
-        
-        connection.stateUpdateHandler = { newState in
-            switch newState {
-            case .ready:
-                self.connectionReady(connection)
-                
-            case .failed(let error):
-                self.connectionFailed(connection, error: error)
-                
-            default:
-                break
-            }
-        }
-
+        // Handle state
+        connection.stateUpdateHandler = stateUpdateHandler(_:)
         // Start the connection establishment.
         connection.start(queue: .main)
     }
-    
     
     /// Sends message via created connection
     /// - Parameter message: The message to send
@@ -92,14 +69,27 @@ class PeerConnection {
         guard let connection = connection else { return }
 
         connection.receiveMessage { (content, context, isComplete, error) in
-            // Extract message type from the received context.
-//            if let message = context?.protocolMetadata(definition: ChatNWProtocol.definition) as? NWProtocolFramer.Message {
             self.delegate?.receivedMessage(content: content, message: .init(messageType: .message))
-//            }
-            
+
             if error == nil {
                 self.receiveNextMessage()
             }
+        }
+    }
+    
+    /// A handler that receives connection state updates.
+    private func stateUpdateHandler(_ newState: NWConnection.State) {
+        switch newState {
+        case .preparing:
+            delegate?.connectionPreparing()
+        case .ready:
+            connectionReady(connection)
+        case .failed(let error), .waiting(let error):
+            connectionFailed(connection, error: error)
+        case .cancelled:
+            delegate?.connectionCanceled()
+        default:
+            break
         }
     }
     
