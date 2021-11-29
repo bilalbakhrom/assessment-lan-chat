@@ -55,14 +55,12 @@ class StartViewController: BaseViewController {
     
     private(set) lazy var ipLabel: UILabel = {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(copyInClipboard))
-        let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(shareHost))
         let view = UILabel()
         view.text = uiConst.ipLabelPlaceholder
         view.textColor = .linkedTextColor
         view.font = .systemFont(ofSize: 17, weight: .medium)
         view.textAlignment = .center
         view.addGestureRecognizer(tapGesture)
-        view.addGestureRecognizer(longGesture)
         view.isUserInteractionEnabled = true
         view.translatesAutoresizingMaskIntoConstraints = false
         
@@ -100,15 +98,6 @@ class StartViewController: BaseViewController {
         guard NetFlowInspector.shared.isReachable else { return }
         UIPasteboard.general.string = NetFlowInspector.shared.host
         fadeInOutAnimator.animateView()
-    }
-    
-    @objc func shareHost() {
-        guard NetFlowInspector.shared.isReachable else { return }
-        guard let host = NetFlowInspector.shared.host else { return }
-        let text = "Hey, this is my IP address: \(host)"
-        let shareVC = UIActivityViewController(activityItems: [text], applicationActivities: nil)
-        shareVC.popoverPresentationController?.sourceView = view
-        present(shareVC, animated: true, completion: nil)
     }
     
     func inspectWifiConnection() {

@@ -33,7 +33,47 @@ class ChatRoomViewController: BaseViewController {
     }()
     
     private(set) lazy var closeButton: UIBarButtonItem = {
-        UIBarButtonItem(title: "Close", style: .done, target: self, action: #selector(closeButtonClicked))
+        let image = UIImage(systemName: "xmark")
+        return UIBarButtonItem(image: image,
+                               style: .done,
+                               target: self,
+                               action: #selector(closeButtonClicked))
+    }()
+    
+    private(set) lazy var shareButton: UIBarButtonItem = {
+        let image = UIImage(systemName: "square.and.arrow.up")
+        return UIBarButtonItem(image: image,
+                               style: .done,
+                               target: self,
+                               action: #selector(shareButtonClicked))
+    }()
+    
+    private(set) lazy var titleLabel: UILabel = {
+        let view = UILabel()
+        view.font = .systemFont(ofSize: 15, weight: .medium)
+        view.textColor = .primaryTextColor
+        view.text = uiConst.navTitle
+        view.textAlignment = .center
+        
+        return view
+    }()
+    
+    private(set) lazy var subtitleLabel: UILabel = {
+        let view = UILabel()
+        view.font = .systemFont(ofSize: 12, weight: .medium)
+        view.textColor = .gray
+        view.text = NetFlowInspector.shared.host
+        view.textAlignment = .center
+        
+        return view
+    }()
+    
+    private(set) lazy var navigationItemStackView: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel])
+        view.axis = .vertical
+        view.spacing = 2.0
+        
+        return view
     }()
     
     // MARK: - Initializers
@@ -83,6 +123,15 @@ class ChatRoomViewController: BaseViewController {
         P2PManager.sharedConnection?.cancel()
         dismiss(animated: true, completion: nil)
     }
+    
+    @objc func shareButtonClicked() {
+        guard NetFlowInspector.shared.isReachable else { return }
+        guard let host = NetFlowInspector.shared.host else { return }
+        let text = "Hey, I created a room to chat. Come join here:\n\(host)"
+        let shareVC = UIActivityViewController(activityItems: [text], applicationActivities: nil)
+        shareVC.popoverPresentationController?.sourceView = view
+        present(shareVC, animated: true, completion: nil)
+    }
 }
 
 // MARK: - Lifecycle
@@ -97,8 +146,9 @@ extension ChatRoomViewController {
             object: nil
         )
         
-        title = uiConst.title
+        navigationItem.titleView = navigationItemStackView
         navigationItem.leftBarButtonItem = closeButton
+        navigationItem.rightBarButtonItem = shareButton
         setup()
     }
     
@@ -181,6 +231,6 @@ extension ChatRoomViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension ChatRoomViewController {
     private struct UIConstants {
-        let title = "Chat"
+        let navTitle = "Chat"
     }
 }

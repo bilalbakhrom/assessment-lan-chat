@@ -43,11 +43,8 @@
 		1364D04527534F5D000208D6 /* PeerListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D04427534F5D000208D6 /* PeerListener.swift */; };
 		1364D04727534FEC000208D6 /* P2PManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D04627534FEC000208D6 /* P2PManager.swift */; };
 		1364D0492753507C000208D6 /* PeerBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D0482753507C000208D6 /* PeerBrowser.swift */; };
-		1364D04B2753854B000208D6 /* JoinRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D04A2753854B000208D6 /* JoinRequest.swift */; };
-		1364D04D2753863B000208D6 /* JSONProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D04C2753863B000208D6 /* JSONProtocol.swift */; };
 		1364D04F27538C54000208D6 /* NWBrowser.ResultExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D04E27538C54000208D6 /* NWBrowser.ResultExtension.swift */; };
 		1364D051275390C0000208D6 /* SearchViewController+CES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D050275390C0000208D6 /* SearchViewController+CES.swift */; };
-		1364D053275396D9000208D6 /* DataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D052275396D9000208D6 /* DataExtension.swift */; };
 		1364D05527544B6E000208D6 /* ButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D05427544B6E000208D6 /* ButtonExtension.swift */; };
 		1364D0572754581F000208D6 /* BoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D0562754581F000208D6 /* BoxView.swift */; };
 		1364D0592754591D000208D6 /* BoxView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D0582754591D000208D6 /* BoxView+Layout.swift */; };
@@ -113,11 +110,8 @@
 		1364D04427534F5D000208D6 /* PeerListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerListener.swift; sourceTree = "<group>"; };
 		1364D04627534FEC000208D6 /* P2PManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P2PManager.swift; sourceTree = "<group>"; };
 		1364D0482753507C000208D6 /* PeerBrowser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerBrowser.swift; sourceTree = "<group>"; };
-		1364D04A2753854B000208D6 /* JoinRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRequest.swift; sourceTree = "<group>"; };
-		1364D04C2753863B000208D6 /* JSONProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONProtocol.swift; sourceTree = "<group>"; };
 		1364D04E27538C54000208D6 /* NWBrowser.ResultExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NWBrowser.ResultExtension.swift; sourceTree = "<group>"; };
 		1364D050275390C0000208D6 /* SearchViewController+CES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewController+CES.swift"; sourceTree = "<group>"; };
-		1364D052275396D9000208D6 /* DataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtension.swift; sourceTree = "<group>"; };
 		1364D05427544B6E000208D6 /* ButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExtension.swift; sourceTree = "<group>"; };
 		1364D0562754581F000208D6 /* BoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxView.swift; sourceTree = "<group>"; };
 		1364D0582754591D000208D6 /* BoxView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BoxView+Layout.swift"; sourceTree = "<group>"; };
@@ -173,13 +167,13 @@
 		1307B5BB2750E8FA003EEFE2 /* WiFiLanChat */ = {
 			isa = PBXGroup;
 			children = (
-				1364D05B27545F85000208D6 /* Animators */,
 				1353F28B2751523F0036001F /* Base */,
 				1353F28E275152600036001F /* Delegate */,
 				1353F2A32751EB890036001F /* Managers */,
 				1353F28F2751529C0036001F /* Modules */,
 				1353F2A027515C820036001F /* Views */,
 				1353F2AA275215A50036001F /* Models */,
+				1364D05B27545F85000208D6 /* Animators */,
 				1353F29B27515A700036001F /* Extensions */,
 				1307B5C52750E8FB003EEFE2 /* Assets.xcassets */,
 				1307B5C72750E8FB003EEFE2 /* LaunchScreen.storyboard */,
@@ -272,7 +266,6 @@
 				1364D02527523CA7000208D6 /* StringExtension.swift */,
 				1364D04027533CB0000208D6 /* NWParametersExtension.swift */,
 				1364D04E27538C54000208D6 /* NWBrowser.ResultExtension.swift */,
-				1364D052275396D9000208D6 /* DataExtension.swift */,
 				1364D05427544B6E000208D6 /* ButtonExtension.swift */,
 			);
 			path = Extensions;
@@ -310,8 +303,6 @@
 				1364D0482753507C000208D6 /* PeerBrowser.swift */,
 				1364D04227534727000208D6 /* ChatNWProtocol.swift */,
 				1364D03427526B2F000208D6 /* Message.swift */,
-				1364D04A2753854B000208D6 /* JoinRequest.swift */,
-				1364D04C2753863B000208D6 /* JSONProtocol.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -489,7 +480,6 @@
 				1364D02A27525B32000208D6 /* PeerConnection.swift in Sources */,
 				1364D05527544B6E000208D6 /* ButtonExtension.swift in Sources */,
 				1364D0572754581F000208D6 /* BoxView.swift in Sources */,
-				1364D04B2753854B000208D6 /* JoinRequest.swift in Sources */,
 				1364D0492753507C000208D6 /* PeerBrowser.swift in Sources */,
 				1353F296275157660036001F /* SearchViewController.swift in Sources */,
 				1353F29A275158A00036001F /* StartViewController+Layout.swift in Sources */,
@@ -505,13 +495,11 @@
 				1364D05D27545F8F000208D6 /* Animator.swift in Sources */,
 				1353F292275155130036001F /* Launcher.swift in Sources */,
 				1364D03127526AFE000208D6 /* MessageTableViewCell.swift in Sources */,
-				1364D04D2753863B000208D6 /* JSONProtocol.swift in Sources */,
 				1364D051275390C0000208D6 /* SearchViewController+CES.swift in Sources */,
 				1307B5BD2750E8FA003EEFE2 /* AppDelegate.swift in Sources */,
 				1364D02227523B05000208D6 /* IPField.swift in Sources */,
 				1364D05F27545FAF000208D6 /* FadeInOutAnimator.swift in Sources */,
 				1307B5BF2750E8FA003EEFE2 /* SceneDelegate.swift in Sources */,
-				1364D053275396D9000208D6 /* DataExtension.swift in Sources */,
 				1364D04327534728000208D6 /* ChatNWProtocol.swift in Sources */,
 				1353F2A72751FDEC0036001F /* NetFlowInstpectable.swift in Sources */,
 				1364D0592754591D000208D6 /* BoxView+Layout.swift in Sources */,
