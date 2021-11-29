@@ -28,8 +28,8 @@ class PeerBrowser {
         // Create parameters, and allow browsing over peer-to-peer link.
         let parameters = NWParameters()
         parameters.includePeerToPeer = true
-        // Browse for a custom "_wifilanchat._tcp" service type.
-        browser = NWBrowser(for: .bonjour(type: "_wifilanchat._tcp", domain: nil), using: parameters)
+        // Browse for a service type.
+        browser = NWBrowser(for: .bonjour(type: PeerListener.serviceType, domain: nil), using: parameters)
     }
 
     /// Starts browsing for services.
@@ -54,10 +54,10 @@ class PeerBrowser {
             if error == NWError.dns(DNSServiceErrorType(kDNSServiceErr_DefunctConnection)) {
                 print("Browser failed with \(error), restarting")
                 browser.cancel()
-                self.startBrowsing()
+                startBrowsing()
             } else {
                 print("Browser failed with \(error), stopping")
-                self.delegate?.displayBrowseError(error)
+                delegate?.displayBrowseError(error)
                 browser.cancel()
             }
             

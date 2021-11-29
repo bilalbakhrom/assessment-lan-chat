@@ -8,7 +8,7 @@
 import Foundation
 import Network
 
-protocol PeerConnectionDelegate: NWConnectionStateDelegate, MessageReceiverDelegate, AdvertiseDelegate {}
+protocol PeerConnectionDelegate: NWConnectionStateDelegate, NWMessageReceiverDelegate, PeerListenerDelegate {}
 
 /// We will use this class to connect peers to send/receive data between them.
 /// Data connection will be a bidirectional. Sent/Recieved data type will `Data`.

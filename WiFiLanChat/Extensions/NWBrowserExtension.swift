@@ -1,5 +1,5 @@
 //
-//  NWBrowser.ResultExtension.swift
+//  NWBrowserExtension.swift
 //  WiFiLanChat
 //
 //  Created by Bilol Mamadjanov on 28/11/21.

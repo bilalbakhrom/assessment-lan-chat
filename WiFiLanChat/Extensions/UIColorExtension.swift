@@ -1,5 +1,5 @@
 //
-//  Colors.swift
+//  UIColorExtension.swift
 //  WiFiLanChat
 //
 //  Created by Bilol Mamadjanov on 26/11/21.

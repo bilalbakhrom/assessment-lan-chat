@@ -7,11 +7,17 @@
 
 import Network
 
+protocol PeerListenerDelegate: AnyObject {
+    func displayAdvertiseError(_ error: NWError)
+}
+
 class PeerListener {
     private var name: String
     private let passcode: String
     private var listener: NWListener?
     weak var delegate: PeerConnectionDelegate?
+    
+    static let serviceType: String = "_wifilanchat._tcp"
     
     // Create a listener with a name to advertise, a passcode for authentication,
     // and a delegate to handle inbound connections.
@@ -46,7 +52,7 @@ class PeerListener {
         }
         
         // Set the service to advertise.
-        listener.service = NWListener.Service(name: self.name, type: "_wifilanchat._tcp")
+        listener.service = NWListener.Service(name: self.name, type: PeerListener.serviceType)
         // Handle state.
         listener.stateUpdateHandler = stateUpdateHandler(_:)
         // Handle a new connection.

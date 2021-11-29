@@ -1,5 +1,5 @@
 //
-//  ButtonExtension.swift
+//  UIButtonExtension.swift
 //  WiFiLanChat
 //
 //  Created by Bilol Mamadjanov on 29/11/21.

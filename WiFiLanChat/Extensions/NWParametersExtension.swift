@@ -23,7 +23,7 @@ extension NWParameters {
         self.includePeerToPeer = true
         
         // Add your custom chat protocol to support chat messages.
-        let definition = NWProtocolFramer.Definition(implementation: ChatNWProtocol.self)
+        let definition = NWProtocolFramer.Definition(implementation: ChatFramer.self)
         let options = NWProtocolFramer.Options(definition: definition)
         self.defaultProtocolStack.applicationProtocols.insert(options, at: 0)
     }
