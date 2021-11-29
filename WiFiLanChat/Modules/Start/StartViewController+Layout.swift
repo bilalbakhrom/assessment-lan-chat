@@ -13,6 +13,7 @@ extension StartViewController {
         let wifiLogoTop: CGFloat = 100
         let wifiLogoSize = CGSize(width: 185, height: 167)
         let ipLabelTop: CGFloat = 24
+        let boxViewTop: CGFloat = 20
         let buttonHeight: CGFloat = 44
         let buttonCornerRadius: CGFloat = 8
         let stackSpacing: CGFloat = 20
@@ -24,6 +25,7 @@ extension StartViewController {
     override func embedSubviews() {
         view.addSubview(wifiLogo)
         view.addSubview(ipLabel)
+        view.addSubview(boxView)
         view.addSubview(stackView)
         stackView.addArrangedSubview(createRoomButton)
         stackView.addArrangedSubview(searchRoomButton)
@@ -32,6 +34,7 @@ extension StartViewController {
     override func setSubviewsConstraints() {
         setLogoConstraints()
         setIPLabelConstraints()
+        setBoxViewConstraints()
         setStackViewConstraints()
         setSearchRoomButtonConstraints()
     }
@@ -40,10 +43,8 @@ extension StartViewController {
 extension StartViewController {
     fileprivate func setLogoConstraints() {
         NSLayoutConstraint.activate([
-            wifiLogo.topAnchor.constraint(
-                equalTo: view.topAnchor,
-                constant: dwgConst.wifiLogoTop
-            ),
+            wifiLogo.topAnchor.constraint(equalTo: view.topAnchor,
+                                          constant: dwgConst.wifiLogoTop),
             wifiLogo.widthAnchor.constraint(equalToConstant: dwgConst.wifiLogoSize.width),
             wifiLogo.heightAnchor.constraint(equalToConstant: dwgConst.wifiLogoSize.height),
             wifiLogo.centerXAnchor.constraint(equalTo: view.centerXAnchor)
@@ -52,28 +53,28 @@ extension StartViewController {
     
     fileprivate func setIPLabelConstraints() {
         NSLayoutConstraint.activate([
-            ipLabel.topAnchor.constraint(
-                equalTo: wifiLogo.bottomAnchor,
-                constant: dwgConst.ipLabelTop
-            ),
+            ipLabel.topAnchor.constraint(equalTo: wifiLogo.bottomAnchor,
+                                         constant: dwgConst.ipLabelTop),
             ipLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+    }
+    
+    fileprivate func setBoxViewConstraints() {
+        NSLayoutConstraint.activate([
+            boxView.topAnchor.constraint(equalTo: ipLabel.bottomAnchor,
+                                         constant: dwgConst.boxViewTop),
+            boxView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
     
     fileprivate func setStackViewConstraints() {
         NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(
-                equalTo: view.leadingAnchor,
-                constant: dwgConst.hPadding
-            ),
-            stackView.trailingAnchor.constraint(
-                equalTo: view.trailingAnchor,
-                constant: -dwgConst.hPadding
-            ),
-            stackView.bottomAnchor.constraint(
-                equalTo: view.bottomAnchor,
-                constant: -dwgConst.stackViewBottom
-            ),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor,
+                                               constant: dwgConst.hPadding),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor,
+                                                constant: -dwgConst.hPadding),
+            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor,
+                                              constant: -dwgConst.stackViewBottom),
         ])
     }
     

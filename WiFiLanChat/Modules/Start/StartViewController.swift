@@ -23,7 +23,8 @@ class StartViewController: BaseViewController {
     
     private(set) lazy var createRoomButton: Button = {
         let view = Button()
-        view.set(title: uiConst.createText.uppercased(), color: .white)
+        view.set(title: uiConst.createText.uppercased(),
+                 color: .white)
         view.addTarget(self, action: #selector(createRoom), for: .touchUpInside)
         view.backgroundColor = .systemGreen
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -33,7 +34,8 @@ class StartViewController: BaseViewController {
     
     private(set) lazy var searchRoomButton: Button = {
         let view = Button()
-        view.set(title: uiConst.searchText.uppercased(), color: .black)        
+        view.set(title: uiConst.searchText.uppercased(),
+                 color: .black)
         view.addTarget(self, action: #selector(searchRoom), for: .touchUpInside)
         view.translatesAutoresizingMaskIntoConstraints = false
         
@@ -52,7 +54,7 @@ class StartViewController: BaseViewController {
     }()
     
     private(set) lazy var ipLabel: UILabel = {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(storeHostInBuffer))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(copyInClipboard))
         let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(shareHost))
         let view = UILabel()
         view.text = uiConst.ipLabelPlaceholder
@@ -65,6 +67,20 @@ class StartViewController: BaseViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
+    }()
+    
+    private(set) lazy var boxView: BoxView = {
+        let boxView = BoxView(frame: .init(origin: .zero, size: .init(width: 200, height: 40)))
+        boxView.setTitle(uiConst.copiedToClipboardText)
+        boxView.sizeToFit()
+        boxView.alpha = 0
+        boxView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return boxView
+    }()
+    
+    private(set) lazy var fadeInOutAnimator: FadeInOutAnimator = {
+        FadeInOutAnimator(view: boxView)
     }()
 
     // MARK: - Actions
@@ -80,9 +96,10 @@ class StartViewController: BaseViewController {
         openSearchViewController()
     }
     
-    @objc func storeHostInBuffer() {
+    @objc func copyInClipboard() {
         guard NetFlowInspector.shared.isReachable else { return }
         UIPasteboard.general.string = NetFlowInspector.shared.host
+        fadeInOutAnimator.animateView()
     }
     
     @objc func shareHost() {
@@ -105,6 +122,7 @@ class StartViewController: BaseViewController {
         ipLabel.textColor = .warningColor
         ipLabel.text = uiConst.ipLabelWarningText
         searchRoomButton.isEnabled = false
+        createRoomButton.isEnabled = false
     }
     
     func didEstablishWifiConnection() {
@@ -112,6 +130,7 @@ class StartViewController: BaseViewController {
         ipLabel.textColor = .linkedTextColor
         ipLabel.text = "IP: \(NetFlowInspector.shared.host ?? "0.0.0.0")"
         searchRoomButton.isEnabled = true
+        createRoomButton.isEnabled = true
     }
     
     // MARK: - Navigation
@@ -161,5 +180,6 @@ extension StartViewController {
         let createText = "Create Room"
         let ipLabelPlaceholder = "Initialize..."
         let ipLabelWarningText = "No connection is available"
+        let copiedToClipboardText = "Host copied to clipboard"
     }
 }
