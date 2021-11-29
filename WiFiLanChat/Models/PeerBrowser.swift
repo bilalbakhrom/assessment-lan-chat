@@ -13,6 +13,7 @@ protocol PeerBrowserDelegate: AnyObject {
     func displayBrowseError(_ error: NWError)
 }
 
+/// An object to browse for available network services.
 class PeerBrowser {
     private(set) var browser: NWBrowser?
     weak var delegate: PeerBrowserDelegate?
@@ -24,6 +25,7 @@ class PeerBrowser {
         startBrowsing()
     }
     
+    /// Craetes a `NWBrowser` object
     private func createBrowser() {
         // Create parameters, and allow browsing over peer-to-peer link.
         let parameters = NWParameters()

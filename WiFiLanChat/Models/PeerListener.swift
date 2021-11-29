@@ -9,19 +9,24 @@ import Network
 
 protocol PeerListenerDelegate: AnyObject {
     func displayAdvertiseError(_ error: NWError)
+    func receivedConnection(_ newConnection: NWConnection)
 }
 
 class PeerListener {
-    private var name: String
-    private let passcode: String
-    private var listener: NWListener?
-    weak var delegate: PeerConnectionDelegate?
-    
+    /// Bonjour service type use to browse and create listener service
     static let serviceType: String = "_wifilanchat._tcp"
+    /// Bonjour service name
+    private var name: String
+    /// Bonjour service parameter
+    private let passcode: String
+    /// An object to handle incoming connection
+    private var listener: NWListener?
+    /// The object that acts as the delegate of the listener.
+    weak var delegate: PeerListenerDelegate?
     
     // Create a listener with a name to advertise, a passcode for authentication,
     // and a delegate to handle inbound connections.
-    init?(name: String, passcode: String, delegate: PeerConnectionDelegate) {
+    init?(name: String, passcode: String, delegate: PeerListenerDelegate) {
         self.delegate = delegate
         self.name = name
         self.passcode = passcode
@@ -84,9 +89,6 @@ class PeerListener {
                 listener.cancel()
             }
             
-        case .cancelled:
-            P2PManager.sharedListener = nil
-            
         default:
             break
         }
@@ -94,17 +96,7 @@ class PeerListener {
     
     /// A handler that receives inbound connections.
     private func newConnectionHandler(_ newConnection: NWConnection) {
-        guard let delegate = self.delegate else {
-            return
-        }
-        
-        if P2PManager.sharedConnection == nil {
-            // Accept a new connection.
-            P2PManager.sharedConnection = PeerConnection(connection: newConnection, delegate: delegate)
-        } else {
-            // If a chat is already in progress, reject it.
-            newConnection.cancel()
-        }
+        delegate?.receivedConnection(newConnection)
     }
     
     /// Stops listening for inbound connections.

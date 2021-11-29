@@ -13,6 +13,7 @@ class ChatRoomViewController: BaseViewController {
     private(set) var dwgConst = DrawingConstants()
     private let uiConst = UIConstants()
     private var username: String = ""
+    private var listener: PeerListener?
     
     private(set) lazy var tableView: UITableView = {
         let view = UITableView()
@@ -79,6 +80,11 @@ class ChatRoomViewController: BaseViewController {
     // MARK: - Initializers
     init() {
         super.init(nibName: nil, bundle: nil)
+    }
+    
+    init(host: String) {
+        super.init(nibName: nil, bundle: nil)
+        self.listener = PeerListener(name: host, passcode: "0", delegate: self)
     }
     
     required init?(coder: NSCoder) {
@@ -192,9 +198,21 @@ extension ChatRoomViewController: PeerConnectionDelegate {
             break
         }
     }
-    
+}
+
+extension ChatRoomViewController: PeerListenerDelegate {
     func displayAdvertiseError(_ error: NWError) {
-        
+        print(error)
+    }
+    
+    func receivedConnection(_ newConnection: NWConnection) {
+        if P2PManager.sharedConnection == nil {
+            // Accept a new connection.
+            P2PManager.sharedConnection = PeerConnection(connection: newConnection, delegate: self)
+        } else {
+            // If a chat is already in progress, reject it.
+            newConnection.cancel()
+        }
     }
 }
 

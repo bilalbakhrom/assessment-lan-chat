@@ -8,12 +8,14 @@
 import Foundation
 import Network
 
-protocol PeerConnectionDelegate: NWConnectionStateDelegate, NWMessageReceiverDelegate, PeerListenerDelegate {}
+protocol PeerConnectionDelegate: NWConnectionStateDelegate, NWMessageReceiverDelegate {}
 
 /// We will use this class to connect peers to send/receive data between them.
 /// Data connection will be a bidirectional. Sent/Recieved data type will `Data`.
 class PeerConnection {
+    /// The object use to create a bidirectional data connection
     private var connection: NWConnection!
+    /// The object that acts as the delegate of the connection.
     weak var delegate: PeerConnectionDelegate?
     
     /// Create an outbound connection when the user initiates a game.

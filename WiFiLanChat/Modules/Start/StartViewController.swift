@@ -25,7 +25,7 @@ class StartViewController: BaseViewController {
         let view = Button()
         view.set(title: uiConst.createText.uppercased(),
                  color: .white)
-        view.addTarget(self, action: #selector(createRoom), for: .touchUpInside)
+        view.addTarget(self, action: #selector(createRoomButtonClicked), for: .touchUpInside)
         view.backgroundColor = .systemGreen
         view.translatesAutoresizingMaskIntoConstraints = false
         
@@ -82,12 +82,12 @@ class StartViewController: BaseViewController {
     }()
 
     // MARK: - Actions
-    @objc func createRoom() {
+    @objc func createRoomButtonClicked() {
         guard let host = NetFlowInspector.shared.host else {
             return
         }
         
-        openChatRoomViewController(using: host)
+        createChatRoom(using: host)
     }
     
     @objc func searchRoom() {
@@ -123,12 +123,12 @@ class StartViewController: BaseViewController {
     }
     
     // MARK: - Navigation
-    func openChatRoomViewController(using host: String) {
-        let chatRoomVC = ChatRoomViewController()
+    
+    func createChatRoom(using host: String) {
+        let chatRoomVC = ChatRoomViewController(host: host)
         let navController: BaseNavigationController = Launcher.makeNavController(rootViewController: chatRoomVC)
         navController.modalPresentationStyle = .fullScreen
         navController.modalTransitionStyle = .flipHorizontal
-        P2PManager.sharedListener = PeerListener(name: host, passcode: "0", delegate: chatRoomVC)
         
         present(navController, animated: true, completion: nil)
     }
