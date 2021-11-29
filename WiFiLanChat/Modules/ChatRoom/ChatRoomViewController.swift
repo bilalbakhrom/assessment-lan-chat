@@ -14,6 +14,7 @@ class ChatRoomViewController: BaseViewController {
     private let uiConst = UIConstants()
     private var username: String = ""
     private var listener: PeerListener?
+    private var connection: PeerConnection?
     
     private(set) lazy var tableView: UITableView = {
         let view = UITableView()
@@ -78,8 +79,10 @@ class ChatRoomViewController: BaseViewController {
     }()
     
     // MARK: - Initializers
-    init() {
+    init(connection: PeerConnection) {
         super.init(nibName: nil, bundle: nil)
+        self.connection = connection
+        self.connection?.delegate = self
     }
     
     init(host: String) {
@@ -112,6 +115,14 @@ class ChatRoomViewController: BaseViewController {
         insertNewMessageCell(message)
     }
     
+    func closeSessions() {
+        connection?.cancel()
+        connection = nil
+        
+        listener?.cancel()
+        listener = nil
+    }
+    
     // MARK: - Actions
     @objc func keyboardWillChange(notification: NSNotification) {
         guard let userInfo = notification.userInfo else { return }
@@ -126,7 +137,7 @@ class ChatRoomViewController: BaseViewController {
     }
     
     @objc func closeButtonClicked() {
-        P2PManager.sharedConnection?.cancel()
+        closeSessions()
         dismiss(animated: true, completion: nil)
     }
     
@@ -206,9 +217,9 @@ extension ChatRoomViewController: PeerListenerDelegate {
     }
     
     func receivedConnection(_ newConnection: NWConnection) {
-        if P2PManager.sharedConnection == nil {
+        if connection == nil {
             // Accept a new connection.
-            P2PManager.sharedConnection = PeerConnection(connection: newConnection, delegate: self)
+            connection = PeerConnection(connection: newConnection, delegate: self)
         } else {
             // If a chat is already in progress, reject it.
             newConnection.cancel()
@@ -219,7 +230,7 @@ extension ChatRoomViewController: PeerListenerDelegate {
 // MARK: - Message Input Bar
 extension ChatRoomViewController: MessageInputDelegate {
     func sendWasTapped(message: String) {
-        P2PManager.sharedConnection?.send(message)
+        connection?.send(message)
         let message = Message(message: message, messageSender: .ourself, username: username)
         insertNewMessageCell(message)
     }

@@ -44,6 +44,10 @@ class PeerBrowser {
         browser?.start(queue: .main)
     }
     
+    func cancel() {
+        browser?.cancel()
+    }
+    
     /// A handler that receives browser state updates.
     private func stateUpdateHandler(_ newState: NWBrowser.State) {
         guard let browser = browser else {
@@ -65,9 +69,6 @@ class PeerBrowser {
             
         case .ready:
             self.delegate?.refreshResults(results: browser.browseResults)
-            
-        case .cancelled:
-            P2PManager.sharedBrowser = nil
             
         default:
             break

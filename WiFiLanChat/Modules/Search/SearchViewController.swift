@@ -11,18 +11,20 @@ import Network
 class SearchViewController: BaseViewController {
     private(set) var dwgConst = DrawingConstants()
     private let uiConst = UIConstants()
-    private var browserResults: [NWBrowser.Result] = [NWBrowser.Result]()
+    private var connection: PeerConnection?
+    private var browser: PeerBrowser?
+    private var results: [NWBrowser.Result] = [NWBrowser.Result]()
+    /// User typed host
     private var receiverHost: String = ""  {
         didSet {
-            connectButton.isEnabled = (state.canEstablishConnection && receiverHost.isIPAddr)
+            updateUserInteractionToConnectButton()
         }
     }
+    /// Connection state
     private var state: ConnectionEstablishmentState = .none {
         didSet {
-            connectButton.isEnabled = (state.canEstablishConnection && receiverHost.isIPAddr)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) { [self] in
-                connectButton.set(title: state.title, color: .linkedTextColor)
-            }
+            updateUserInteractionToConnectButton()
+            updateConnectButtonTitle(state.title)
         }
     }
     
@@ -46,46 +48,70 @@ class SearchViewController: BaseViewController {
         return view
     }()
     
+    deinit {
+        connection?.cancel()
+        browser?.cancel()
+    }
+    
     // MARK: - Actions
     @objc func connectButtonClicked() {
         state = .searching
         if receiverHost.isIPAddr {
-            startConnection()
+            startConnection(toHost: receiverHost)
         } else {
-            state = .none
+            showAlert_invalidIPAddress()
         }
     }
     
     func fetchServices() {
-        if let browser = P2PManager.sharedBrowser {
+        if let browser = self.browser {
             browser.startBrowsing()
         } else {
-            P2PManager.sharedBrowser = PeerBrowser(delegate: self)
+            browser = PeerBrowser(delegate: self)
         }
     }
     
-    func startConnection() {
-        guard let browserResult = browserResults.find(host: receiverHost) else {
+    func startConnection(toHost host: String) {
+        guard let browserResult = results.find(host: receiverHost) else {
             showAlert_noHostFound()
-            state = .none
             return
         }
         
-        state = .connecting
-        P2PManager.sharedConnection = PeerConnection(endpoint: browserResult.endpoint,
-                                                     interface: browserResult.interfaces.first,
-                                                     passcode: "0",
-                                                     delegate: self)
+        connect(to: browserResult)
     }
     
-    func openChatRoomViewController() {
-        let chatRoomVC = ChatRoomViewController()
+    func connect(to browserResult: NWBrowser.Result) {
+        // Update state.
+        state = .connecting
+        // Create a new connection.
+        connection = PeerConnection(endpoint: browserResult.endpoint,
+                                    interface: browserResult.interfaces.first,
+                                    passcode: "0",
+                                    delegate: self)
+    }
+    
+    func joinChatRoom() {
+        guard let connection = connection else {
+            return
+        }
+        
+        let chatRoomVC = ChatRoomViewController(connection: connection)
         let navController: BaseNavigationController = Launcher.makeNavController(rootViewController: chatRoomVC)
         navController.modalPresentationStyle = .fullScreen
         navController.modalTransitionStyle = .flipHorizontal
-        P2PManager.sharedConnection?.delegate = chatRoomVC
-
+        self.connection = nil
+        
         present(navController, animated: true, completion: nil)
+    }
+    
+    private func updateUserInteractionToConnectButton() {
+        connectButton.isEnabled = (state.canEstablishConnection && receiverHost.isIPAddr)
+    }
+    
+    private func updateConnectButtonTitle(_ title: String) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+            self?.connectButton.set(title: title, color: .linkedTextColor)
+        }
     }
 }
 
@@ -93,7 +119,6 @@ class SearchViewController: BaseViewController {
 extension SearchViewController {
     private struct UIConstants {
         let title = "Search"
-        let connectButtonTitle = "Connect"
     }
 }
 
@@ -125,11 +150,11 @@ extension SearchViewController: IPFieldDelegate {
 extension SearchViewController: PeerBrowserDelegate {
     func refreshResults(results: Set<NWBrowser.Result>) {
         guard let host = NetFlowInspector.shared.host else { return }
-        browserResults = [NWBrowser.Result]()
+        self.results = [NWBrowser.Result]()
         for result in results {
             if case let NWEndpoint.service(name: name, type: _, domain: _, interface: _) = result.endpoint {
                 if name != host {
-                    browserResults.append(result)
+                    self.results.append(result)
                 }
             }
         }
@@ -138,57 +163,47 @@ extension SearchViewController: PeerBrowserDelegate {
     // Show an error if peer discovery failed.
     func displayBrowseError(_ error: NWError) {
         showAlert_browseError(error)
-        state = .none
     }
 }
 
 // MARK: - PeerConnectionDelegate
 extension SearchViewController: PeerConnectionDelegate {
-    func receivedMessage(content: Data?, message: NWProtocolFramer.Message) {
-        
-    }
-    
-    func displayAdvertiseError(_ error: NWError) {
-        
-    }
+    func receivedMessage(content: Data?, message: NWProtocolFramer.Message) { }
     
     func connectionReady() {
         state = .connected
-        openChatRoomViewController()
+        joinChatRoom()
     }
     
     func connectionFailed() {
         state = .failed
+        connection?.cancel()
+        connection = nil
         showAlert_couldNotConnect()
-        // Abort connection
-        state = .none
-        P2PManager.sharedConnection?.cancel()
-        P2PManager.sharedConnection = nil
     }
     
-    func connectionPreparing() {
-        
-    }
-    
-    func connectionCanceled() {
-        
-    }
+    func connectionPreparing() {}
+    func connectionCanceled() {}
 }
 
 // MARK: - Error Messages
 extension SearchViewController {
+    private func showAlert_invalidIPAddress() {
+        showAlert(title: "Invalid IP address",
+                  message: "Please enter a valid IP address",
+                  handler: { _ in self.state = .none })
+    }
+    
     private func showAlert_noHostFound() {
-        showAlert(
-            title: "No host found",
-            message: "We could not find any host with specified IP address: \(receiverHost)"
-        )
+        showAlert(title: "No host found",
+                  message: "We could not find any host with specified IP address: \(receiverHost)",
+                  handler: { _ in self.state = .none })
     }
     
     private func showAlert_couldNotConnect() {
-        showAlert(
-            title: "Request Error",
-            message: "Could not connect to host:\n\(receiverHost)\nPlease, try again"
-        )
+        showAlert(title: "Request Error",
+                  message: "Could not connect to host:\n\(receiverHost)\nPlease, try again",
+                  handler: { _ in self.state = .none })
     }
     
     private func showAlert_browseError(_ error: NWError) {
@@ -196,6 +211,8 @@ extension SearchViewController {
         if error == NWError.dns(DNSServiceErrorType(kDNSServiceErr_NoAuth)) {
             message = "Not allowed to access the network"
         }
-        showAlert(title: "Cannot discover other players", message: message)
+        showAlert(title: "Cannot discover other players",
+                  message: message,
+                  handler: { _ in self.state = .none })
     }
 }

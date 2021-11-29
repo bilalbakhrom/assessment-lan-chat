@@ -41,7 +41,6 @@
 		1364D04127533CB0000208D6 /* NWParametersExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D04027533CB0000208D6 /* NWParametersExtension.swift */; };
 		1364D04327534728000208D6 /* ChatFramer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D04227534727000208D6 /* ChatFramer.swift */; };
 		1364D04527534F5D000208D6 /* PeerListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D04427534F5D000208D6 /* PeerListener.swift */; };
-		1364D04727534FEC000208D6 /* P2PManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D04627534FEC000208D6 /* P2PManager.swift */; };
 		1364D0492753507C000208D6 /* PeerBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D0482753507C000208D6 /* PeerBrowser.swift */; };
 		1364D04F27538C54000208D6 /* NWBrowserExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D04E27538C54000208D6 /* NWBrowserExtension.swift */; };
 		1364D051275390C0000208D6 /* SearchViewController+CES.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1364D050275390C0000208D6 /* SearchViewController+CES.swift */; };
@@ -113,7 +112,6 @@
 		1364D04027533CB0000208D6 /* NWParametersExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NWParametersExtension.swift; sourceTree = "<group>"; };
 		1364D04227534727000208D6 /* ChatFramer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatFramer.swift; sourceTree = "<group>"; };
 		1364D04427534F5D000208D6 /* PeerListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerListener.swift; sourceTree = "<group>"; };
-		1364D04627534FEC000208D6 /* P2PManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P2PManager.swift; sourceTree = "<group>"; };
 		1364D0482753507C000208D6 /* PeerBrowser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerBrowser.swift; sourceTree = "<group>"; };
 		1364D04E27538C54000208D6 /* NWBrowserExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NWBrowserExtension.swift; sourceTree = "<group>"; };
 		1364D050275390C0000208D6 /* SearchViewController+CES.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchViewController+CES.swift"; sourceTree = "<group>"; };
@@ -301,7 +299,6 @@
 			children = (
 				1353F2A42751EB960036001F /* NetFlowInspector.swift */,
 				1353F2A62751FDEC0036001F /* NetFlowInstpectable.swift */,
-				1364D04627534FEC000208D6 /* P2PManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -531,7 +528,6 @@
 				1364D04327534728000208D6 /* ChatFramer.swift in Sources */,
 				1353F2A72751FDEC0036001F /* NetFlowInstpectable.swift in Sources */,
 				1364D0592754591D000208D6 /* BoxView+Layout.swift in Sources */,
-				1364D04727534FEC000208D6 /* P2PManager.swift in Sources */,
 				1364D03527526B2F000208D6 /* Message.swift in Sources */,
 				1353F2A52751EB960036001F /* NetFlowInspector.swift in Sources */,
 				1353F2A227515C920036001F /* Button.swift in Sources */,
