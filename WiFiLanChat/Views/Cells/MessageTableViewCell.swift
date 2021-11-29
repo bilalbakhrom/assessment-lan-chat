@@ -90,7 +90,7 @@ extension MessageTableViewCell {
             }
         }
         
-        messageLabel.layer.cornerRadius = min(messageLabel.bounds.size.height / 2.0, 20)
+        messageLabel.layer.cornerRadius = 8
     }
     
     func layoutForJoinMessage() {

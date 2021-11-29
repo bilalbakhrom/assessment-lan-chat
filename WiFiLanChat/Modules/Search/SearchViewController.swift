@@ -67,6 +67,7 @@ class SearchViewController: BaseViewController {
     func startConnection() {
         guard let browserResult = browserResults.find(host: receiverHost) else {
             showAlert_noHostFound()
+            state = .none
             return
         }
         
