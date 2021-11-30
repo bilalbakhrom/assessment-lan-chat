@@ -112,7 +112,7 @@ class ChatRoomViewController: BaseViewController {
         if listener == nil {
             showAlert(title: "Host closed",
                       message: "This host is closed by host owner",
-                      handler: { _ in self.closeChatRoom() }) 
+                      handler: { _ in self.closeChatRoom() })
         }
         // When room is closed by member.
         else {
@@ -229,7 +229,11 @@ extension ChatRoomViewController {
         
         navigationItem.titleView = navigationItemStackView
         navigationItem.leftBarButtonItem = closeButton
-        navigationItem.rightBarButtonItem = shareButton
+        // Only listener can share host
+        if listener != nil {
+            navigationItem.rightBarButtonItem = shareButton
+        }
+        
         setup()
     }
     
