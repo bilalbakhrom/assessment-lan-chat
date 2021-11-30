@@ -8,4 +8,5 @@
 enum MessageType: UInt32 {
     case invalid = 0
     case message = 1
+    case cancelRequest = 2
 }

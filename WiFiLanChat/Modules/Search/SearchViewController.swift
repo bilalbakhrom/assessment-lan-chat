@@ -24,7 +24,6 @@ class SearchViewController: BaseViewController {
     private var state: ConnectionEstablishmentState = .none {
         didSet {
             updateUserInteractionToConnectButton()
-            updateConnectButtonTitle(state.title)
         }
     }
     
@@ -55,11 +54,12 @@ class SearchViewController: BaseViewController {
     
     // MARK: - Actions
     @objc func connectButtonClicked() {
-        state = .searching
-        if receiverHost.isIPAddr {
-            startConnection(toHost: receiverHost)
-        } else {
-            showAlert_invalidIPAddress()
+        update(state: .searching) { [self] in
+            if receiverHost.isIPAddr {
+                startConnection(toHost: receiverHost)
+            } else {
+                showAlert_invalidIPAddress()
+            }
         }
     }
     
@@ -82,12 +82,13 @@ class SearchViewController: BaseViewController {
     
     func connect(to browserResult: NWBrowser.Result) {
         // Update state.
-        state = .connecting
-        // Create a new connection.
-        connection = PeerConnection(endpoint: browserResult.endpoint,
-                                    interface: browserResult.interfaces.first,
-                                    passcode: "0",
-                                    delegate: self)
+        update(state: .connecting) { [self] in
+            // Create a new connection.
+            connection = PeerConnection(endpoint: browserResult.endpoint,
+                                        interface: browserResult.interfaces.first,
+                                        passcode: "0",
+                                        delegate: self)
+        }
     }
     
     func joinChatRoom() {
@@ -95,11 +96,12 @@ class SearchViewController: BaseViewController {
             return
         }
         
+        defer { self.connection = nil }
+        
         let chatRoomVC = ChatRoomViewController(connection: connection)
         let navController: BaseNavigationController = Launcher.makeNavController(rootViewController: chatRoomVC)
         navController.modalPresentationStyle = .fullScreen
         navController.modalTransitionStyle = .flipHorizontal
-        self.connection = nil
         
         present(navController, animated: true, completion: nil)
     }
@@ -108,9 +110,11 @@ class SearchViewController: BaseViewController {
         connectButton.isEnabled = (state.canEstablishConnection && receiverHost.isIPAddr)
     }
     
-    private func updateConnectButtonTitle(_ title: String) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
-            self?.connectButton.set(title: title, color: .linkedTextColor)
+    private func update(state: ConnectionEstablishmentState, completion: (() -> Void)? = nil) {
+        self.state = state
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            self.connectButton.set(title: state.title, color: .linkedTextColor)
+            completion?()
         }
     }
 }
@@ -128,7 +132,7 @@ extension SearchViewController {
         super.viewDidLoad()
         
         title = uiConst.title
-        state = .none
+        update(state: .none)
         setup()
         hideKeyboardWhenTappedOnView()
         fetchServices()
@@ -168,22 +172,24 @@ extension SearchViewController: PeerBrowserDelegate {
 
 // MARK: - PeerConnectionDelegate
 extension SearchViewController: PeerConnectionDelegate {
-    func receivedMessage(content: Data?, message: NWProtocolFramer.Message) { }
-    
     func connectionReady() {
-        state = .connected
-        joinChatRoom()
+        update(state: .connected) { [self] in
+            joinChatRoom()
+            update(state: .none)
+        }
     }
     
     func connectionFailed() {
-        state = .failed
-        connection?.cancel()
-        connection = nil
-        showAlert_couldNotConnect()
+        update(state: .failed) { [self] in
+            connection?.cancel()
+            connection = nil
+            showAlert_couldNotConnect()
+        }
     }
     
     func connectionPreparing() {}
     func connectionCanceled() {}
+    func received(content: Data?, message: NWProtocolFramer.Message) { }
 }
 
 // MARK: - Error Messages
@@ -191,19 +197,19 @@ extension SearchViewController {
     private func showAlert_invalidIPAddress() {
         showAlert(title: "Invalid IP address",
                   message: "Please enter a valid IP address",
-                  handler: { _ in self.state = .none })
+                  handler: { _ in self.update(state: .none) })
     }
     
     private func showAlert_noHostFound() {
         showAlert(title: "No host found",
                   message: "We could not find any host with specified IP address: \(receiverHost)",
-                  handler: { _ in self.state = .none })
+                  handler: { _ in self.update(state: .none) })
     }
     
     private func showAlert_couldNotConnect() {
         showAlert(title: "Host is busy",
                   message: "Could not connect to host:\n\(receiverHost)\nPlease, try again",
-                  handler: { _ in self.state = .none })
+                  handler: { _ in self.update(state: .none) })
     }
     
     private func showAlert_browseError(_ error: NWError) {
@@ -213,6 +219,6 @@ extension SearchViewController {
         }
         showAlert(title: "Cannot discover other players",
                   message: message,
-                  handler: { _ in self.state = .none })
+                  handler: { _ in self.update(state: .none) })
     }
 }

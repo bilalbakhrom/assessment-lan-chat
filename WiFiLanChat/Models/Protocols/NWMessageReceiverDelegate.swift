@@ -9,5 +9,5 @@ import Foundation
 import Network
 
 protocol NWMessageReceiverDelegate: AnyObject {
-    func receivedMessage(content: Data?, message: NWProtocolFramer.Message)
+    func received(content: Data?, message: NWProtocolFramer.Message)
 }

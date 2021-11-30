@@ -11,8 +11,9 @@ import Network
 class ChatRoomViewController: BaseViewController {
     private(set) var messages: [Message] = []
     private(set) var dwgConst = DrawingConstants()
-    private let uiConst = UIConstants()
-    private var username: String = ""
+    private(set) var uiConst = UIConstants()
+    private(set) var senderName: String = ""
+    private(set) var receiverName: String = ""
     private var listener: PeerListener?
     private var connection: PeerConnection?
     
@@ -22,6 +23,7 @@ class ChatRoomViewController: BaseViewController {
         view.delegate = self
         view.separatorStyle = .none
         view.backgroundColor = .clear
+        view.register(MessageTableViewCell.self, forCellReuseIdentifier: uiConst.cellIdentifier)
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -100,27 +102,85 @@ class ChatRoomViewController: BaseViewController {
             name: UIResponder.keyboardWillChangeFrameNotification,
             object: nil
         )
+        
+        abort()
     }
     
-    func insertReceiverCell(_ content: Data) {
-        guard let text = String(data: content, encoding: .utf8) else {
+    /// Handles when user closes chat room.
+    func receivedCancelRequest() {
+        // Room is closed by host owner.
+        if listener == nil {
+            showAlert(title: "Host closed",
+                      message: "This host is closed by host owner",
+                      handler: { _ in self.closeChatRoom() }) 
+        }
+        // When room is closed by member.
+        else {
+            connection?.cancel()
+            connection = nil
+        }
+    }
+    
+    /// Cancels connection and listener
+    func abort() {
+        /// Abort connection
+        connection?.cancel()
+        connection = nil
+        /// Abort listener
+        listener?.cancel()
+        listener = nil
+    }
+    
+    func closeChatRoom() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [self] in
+            dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    func receivedMessage(_ content: Data?) {
+        guard let text = content?.toString, !text.isEmpty else {
             return
         }
         
-        let message = Message(
-            message: text,
-            messageSender: .someoneElse,
-            username: username
-        )
-        insertNewMessageCell(message)
+        let message = Message(text: text, owner: .receiver, username: receiverName)
+        messages.append(message)
+        insertNewMessageCell()
     }
     
-    func closeSessions() {
-        connection?.cancel()
-        connection = nil
-        
-        listener?.cancel()
-        listener = nil
+    func sentMessage(_ text: String) {
+        let message = Message(text: text, owner: .sender, username: senderName)
+        messages.append(message)
+        insertNewMessageCell()
+    }
+    
+    func ownerClosedChatRoom() {
+        let title = "Do you want to close chat?"
+        let message = "This will close chat in two sides"
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let closeAction = UIAlertAction(title: "Close", style: .destructive) { _ in
+            self.connection?.sendFrame(.cancelRequest)
+            self.closeChatRoom()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(closeAction)
+        alert.addAction(cancelAction)
+                                        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func memberClosedChatRoom() {
+        let title = "Do you want to exit from chat?"
+        let message = "You cannot join again unless it is free"
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let closeAction = UIAlertAction(title: "Exit", style: .destructive) { _ in
+            self.connection?.sendFrame(.cancelRequest)
+            self.closeChatRoom()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(closeAction)
+        alert.addAction(cancelAction)
+                                        
+        present(alert, animated: true, completion: nil)
     }
     
     // MARK: - Actions
@@ -137,8 +197,12 @@ class ChatRoomViewController: BaseViewController {
     }
     
     @objc func closeButtonClicked() {
-        closeSessions()
-        dismiss(animated: true, completion: nil)
+        if listener == nil {
+            memberClosedChatRoom()
+        } else {
+            // If no connection here, it's safe to close chat.
+            connection == nil ? closeChatRoom() : ownerClosedChatRoom()
+        }
     }
     
     @objc func shareButtonClicked() {
@@ -183,29 +247,30 @@ extension ChatRoomViewController {
 
 extension ChatRoomViewController: PeerConnectionDelegate {
     func connectionReady() {
-        
+        print("Ready")
     }
     
     func connectionFailed() {
-        
+        print("Failed")
     }
     
     func connectionPreparing() {
-        
+        print("Preparing")
     }
     
     func connectionCanceled() {
         print("Canceled")
     }
     
-    func receivedMessage(content: Data?, message: NWProtocolFramer.Message) {
-        guard let content = content else { return }
-        
+    func received(content: Data?, message: NWProtocolFramer.Message) {
         switch message.type {
         case .message:
-            insertReceiverCell(content)
+            receivedMessage(content)
             
-        default:
+        case .cancelRequest:
+            receivedCancelRequest()
+            
+        case .invalid:
             break
         }
     }
@@ -229,45 +294,18 @@ extension ChatRoomViewController: PeerListenerDelegate {
 
 // MARK: - Message Input Bar
 extension ChatRoomViewController: MessageInputDelegate {
-    func sendWasTapped(message: String) {
+    func sendButtonClicked(message: String) {
+        guard !message.isEmpty else { return }
         connection?.send(message)
-        let message = Message(message: message, messageSender: .ourself, username: username)
-        insertNewMessageCell(message)
+        sentMessage(message)
     }
 }
 
 // MARK: - Table DataSource and Delegate
-extension ChatRoomViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = MessageTableViewCell(style: .default, reuseIdentifier: "MessageCell")
-        cell.selectionStyle = .none
-        
-        let message = messages[indexPath.row]
-        cell.apply(message: message)
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        messages.count
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        MessageTableViewCell.height(for: messages[indexPath.row])
-    }
-    
-    func insertNewMessageCell(_ message: Message) {
-        messages.append(message)
-        let indexPath = IndexPath(row: messages.count - 1, section: 0)
-        tableView.beginUpdates()
-        tableView.insertRows(at: [indexPath], with: .bottom)
-        tableView.endUpdates()
-        tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-    }
-}
 
 extension ChatRoomViewController {
-    private struct UIConstants {
+    struct UIConstants {
         let navTitle = "Chat"
+        let cellIdentifier = "MessageCell"
     }
 }

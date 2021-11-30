@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MessageInputDelegate: AnyObject {
-    func sendWasTapped(message: String)
+    func sendButtonClicked(message: String)
 }
 
 class MessageInputView: UIView {
@@ -61,7 +61,7 @@ class MessageInputView: UIView {
     // MARK: - Actions
     @objc func send() {
         guard let message = textView.text else { return }
-        delegate?.sendWasTapped(message:  message)
+        delegate?.sendButtonClicked(message:  message)
         textView.text = ""
     }
     

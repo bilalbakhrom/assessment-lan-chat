@@ -7,25 +7,22 @@
 
 import UIKit
 
-enum MessageSender {
-    case ourself
-    case someoneElse
-}
-
 class MessageTableViewCell: UITableViewCell {
-    var messageSender: MessageSender = .ourself
+    var messageSender: MessageOwner = .sender
     let messageLabel = Label()
     let nameLabel = UILabel()
     
     func apply(message: Message) {
-        nameLabel.text = message.senderUsername
-        messageLabel.text = message.message
-        messageSender = message.messageSender
+        nameLabel.text = message.username
+        messageLabel.text = message.text
+        messageSender = message.owner
         setNeedsLayout()
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        selectionStyle = .none
         backgroundColor = .clear
         messageLabel.clipsToBounds = true
         messageLabel.textColor = .white
@@ -46,8 +43,8 @@ class MessageTableViewCell: UITableViewCell {
     
     class func height(for message: Message) -> CGFloat {
         let maxSize = CGSize(width: 2*(UIScreen.main.bounds.size.width/3), height: CGFloat.greatestFiniteMagnitude)
-        let nameHeight = message.messageSender == .ourself ? 0 : (height(forText: message.senderUsername, fontSize: 10, maxSize: maxSize) + 4 )
-        let messageHeight = height(forText: message.message, fontSize: 17, maxSize: maxSize)
+        let nameHeight = message.owner == .sender ? 0 : (height(forText: message.username, fontSize: 10, maxSize: maxSize) + 4 )
+        let messageHeight = height(forText: message.text, fontSize: 17, maxSize: maxSize)
         
         return nameHeight + messageHeight + 32 + 16
     }
@@ -75,7 +72,7 @@ extension MessageTableViewCell {
             let size = messageLabel.sizeThatFits(CGSize(width: 2 * (bounds.size.width / 3), height: .greatestFiniteMagnitude))
             messageLabel.frame = CGRect(x: 0, y: 0, width: size.width + 32, height: size.height + 16)
             
-            if messageSender == .ourself {
+            if messageSender == .sender {
                 nameLabel.isHidden = true
                 
                 messageLabel.center = CGPoint(x: bounds.size.width - messageLabel.bounds.size.width/2.0 - 16, y: bounds.size.height/2.0)

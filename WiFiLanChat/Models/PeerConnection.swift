@@ -73,6 +73,21 @@ class PeerConnection {
         connection.send(content: content, contentContext: context, isComplete: true, completion: .idempotent)
     }
     
+    /// Sends data to notice that connection is going to be canceled.
+    ///
+    /// Call this method before close chat room
+    func sendFrame(_ messageType: MessageType) {
+        guard let connection = connection else {
+            return
+        }
+        
+        let message = NWProtocolFramer.Message(messageType: messageType)
+        let context = NWConnection.ContentContext(identifier: "Cancel", metadata: [message])
+
+        // Send the application content along with the message.
+        connection.send(content: nil, contentContext: context, isComplete: true, completion: .idempotent)
+    }
+    
     /// Receives a message.
     ///
     /// It will continue to receive more messages untill receive an error.
@@ -82,7 +97,7 @@ class PeerConnection {
         connection.receiveMessage { (content, context, isComplete, error) in
             // Extract your message type from the received context.
             if let message = context?.protocolMetadata(definition: ChatFramer.definition) as? NWProtocolFramer.Message {
-                self.delegate?.receivedMessage(content: content, message: message)
+                self.delegate?.received(content: content, message: message)
             }
 
             if error == nil {

@@ -8,13 +8,13 @@
 import Foundation
 
 struct Message {
-    let message: String
-    let senderUsername: String
-    let messageSender: MessageSender
+    let text: String
+    let username: String
+    let owner: MessageOwner
     
-    init(message: String, messageSender: MessageSender, username: String) {
-        self.message = message.withoutWhitespace()
-        self.messageSender = messageSender
-        self.senderUsername = username
+    init(text: String, owner: MessageOwner, username: String) {
+        self.text = text.withoutWhitespace()
+        self.owner = owner
+        self.username = username
     }
 }
