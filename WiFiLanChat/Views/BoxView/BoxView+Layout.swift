@@ -16,7 +16,7 @@ extension BoxView {
 }
 
 extension BoxView {
-    func setup() {
+    func setupSubviews() {
         embedSuviews()
         setSubviewsConstraints()
     }

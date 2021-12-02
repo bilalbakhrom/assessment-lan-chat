@@ -145,7 +145,7 @@ extension StartViewController {
         super.viewDidLoad()
         
         title = uiConst.title
-        setup()
+        setupSubviews()
         inspectWifiConnection()
     }
     

@@ -33,7 +33,7 @@ class IPField: UIView {
     // MARK: - Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setup()
+        setupSubviews()
     }
     
     required init(coder: NSCoder) {
@@ -205,7 +205,7 @@ extension IPField {
 
 // MARK: - Layout
 extension IPField {
-    private func setup() {
+    private func setupSubviews() {
         embedSubviews()
         setSubviewsConstraints()
     }

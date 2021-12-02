@@ -8,54 +8,49 @@
 import UIKit
 
 class MessageTableViewCell: UITableViewCell {
-    var messageSender: MessageOwner = .sender
-    let messageLabel = Label()
-    let nameLabel = UILabel()
+    private var messageOwner: MessageOwner = .sender
+    private var messageType: MessageType = .invalid
     
-    func apply(message: Message) {
-        nameLabel.text = message.username
-        messageLabel.text = message.text
-        messageSender = message.owner
-        setNeedsLayout()
-    }
+    // MARK: - UI Properties
+    private(set) lazy var messageLabel: Label = {
+        let view = Label()
+        view.clipsToBounds = true
+        view.textColor = .white
+        view.numberOfLines = 0
+        view.layer.cornerRadius = 8
+        
+        return view
+    }()
+    private(set) lazy var nameLabel: UILabel = {
+        let view = UILabel()
+        view.textColor = .lightGray
+        view.font = .systemFont(ofSize: 10)
+        
+        return view
+    }()
     
+    // MARK: - Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        selectionStyle = .none
-        backgroundColor = .clear
-        messageLabel.clipsToBounds = true
-        messageLabel.textColor = .white
-        messageLabel.numberOfLines = 0
-        
-        nameLabel.textColor = .lightGray
-        nameLabel.font = UIFont(name: "Helvetica", size: 10)
-        
-        clipsToBounds = true
-        
-        addSubview(messageLabel)
-        addSubview(nameLabel)
+        configureView()
+        setupSubviews()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    class func height(for message: Message) -> CGFloat {
-        let maxSize = CGSize(width: 2*(UIScreen.main.bounds.size.width/3), height: CGFloat.greatestFiniteMagnitude)
-        let nameHeight = message.owner == .sender ? 0 : (height(forText: message.username, fontSize: 10, maxSize: maxSize) + 4 )
-        let messageHeight = height(forText: message.text, fontSize: 17, maxSize: maxSize)
-        
-        return nameHeight + messageHeight + 32 + 16
+    private func configureView() {
+        backgroundColor = .clear
+        selectionStyle = .none
+        clipsToBounds = true
     }
     
-    private class func height(forText text: String, fontSize: CGFloat, maxSize: CGSize) -> CGFloat {
-        let font = UIFont(name: "Helvetica", size: fontSize)!
-        let attrString = NSAttributedString(string: text, attributes:[NSAttributedString.Key.font: font,
-                                                                      NSAttributedString.Key.foregroundColor: UIColor.white])
-        let textHeight = attrString.boundingRect(with: maxSize, options: .usesLineFragmentOrigin, context: nil).size.height
-        
-        return textHeight
+    func apply(message: Message) {
+        nameLabel.text = message.username
+        messageLabel.text = message.text
+        messageOwner = message.owner
+        setNeedsLayout()
     }
 }
 
@@ -63,31 +58,37 @@ extension MessageTableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        if isJoinMessage() {
-            layoutForJoinMessage()
-        } else {
+        switch messageType {
+        case .message:
             messageLabel.font = UIFont(name: "Helvetica", size: 17)
             messageLabel.textColor = .white
             
             let size = messageLabel.sizeThatFits(CGSize(width: 2 * (bounds.size.width / 3), height: .greatestFiniteMagnitude))
             messageLabel.frame = CGRect(x: 0, y: 0, width: size.width + 32, height: size.height + 16)
             
-            if messageSender == .sender {
+            if messageOwner == .sender {
                 nameLabel.isHidden = true
                 
-                messageLabel.center = CGPoint(x: bounds.size.width - messageLabel.bounds.size.width/2.0 - 16, y: bounds.size.height/2.0)
+                messageLabel.center = CGPoint(x: bounds.size.width - messageLabel.bounds.size.width/2.0 - 16,
+                                              y: bounds.size.height/2.0)
                 messageLabel.backgroundColor = UIColor(red: 24 / 255, green: 180 / 255, blue: 128 / 255, alpha: 1.0)
             } else {
                 nameLabel.isHidden = false
                 nameLabel.sizeToFit()
-                nameLabel.center = CGPoint(x: nameLabel.bounds.size.width / 2.0 + 16 + 4, y: nameLabel.bounds.size.height/2.0 + 4)
+                nameLabel.center = CGPoint(x: nameLabel.bounds.size.width / 2.0 + 16 + 4,
+                                           y: nameLabel.bounds.size.height/2.0 + 4)
                 
-                messageLabel.center = CGPoint(x: messageLabel.bounds.size.width / 2.0 + 16, y: messageLabel.bounds.size.height/2.0 + nameLabel.bounds.size.height + 8)
+                messageLabel.center = CGPoint(x: messageLabel.bounds.size.width / 2.0 + 16,
+                                              y: messageLabel.bounds.size.height/2.0 + nameLabel.bounds.size.height + 8)
                 messageLabel.backgroundColor = .lightGray
             }
+            
+        case .cancelRequest:
+            layoutForJoinMessage()
+            
+        default:
+            break
         }
-        
-        messageLabel.layer.cornerRadius = 8
     }
     
     func layoutForJoinMessage() {
@@ -98,16 +99,6 @@ extension MessageTableViewCell {
         let size = messageLabel.sizeThatFits(CGSize(width: 2 * (bounds.size.width / 3), height: .greatestFiniteMagnitude))
         messageLabel.frame = CGRect(x: 0, y: 0, width: size.width + 32, height: size.height + 16)
         messageLabel.center = CGPoint(x: bounds.size.width / 2, y: bounds.size.height / 2.0)
-    }
-    
-    func isJoinMessage() -> Bool {
-        if let words = messageLabel.text?.components(separatedBy: " ") {
-            if words.count >= 2 && words[words.count - 2] == "has" && words[words.count - 1] == "joined" {
-                return true
-            }
-        }
-        
-        return false
     }
 }
 

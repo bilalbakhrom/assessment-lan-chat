@@ -27,7 +27,7 @@ class BoxView: UIView {
         
         backgroundColor = UIColor.black.withAlphaComponent(0.33)
         layer.cornerRadius = dwgConst.cornerRadius
-        setup()
+        setupSubviews()
     }
     
     required init?(coder: NSCoder) {

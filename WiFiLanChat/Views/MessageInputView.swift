@@ -51,7 +51,7 @@ class MessageInputView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
                 
-        setup()
+        setupSubviews()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -85,7 +85,7 @@ extension MessageInputView: UITextViewDelegate {
 }
 
 extension MessageInputView {
-    func setup() {
+    func setupSubviews() {
         backgroundColor = UIColor(red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
         layer.borderWidth = 1.0
         layer.borderColor = UIColor.systemGray4.cgColor

@@ -133,7 +133,7 @@ extension SearchViewController {
         
         title = uiConst.title
         update(state: .none)
-        setup()
+        setupSubviews()
         hideKeyboardWhenTappedOnView()
         fetchServices()
     }

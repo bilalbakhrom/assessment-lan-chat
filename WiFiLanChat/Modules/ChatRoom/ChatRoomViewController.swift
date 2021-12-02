@@ -12,8 +12,8 @@ class ChatRoomViewController: BaseViewController {
     private(set) var messages: [Message] = []
     private(set) var dwgConst = DrawingConstants()
     private(set) var uiConst = UIConstants()
-    private(set) var senderName: String = ""
-    private(set) var receiverName: String = ""
+    private(set) var senderName: String = "Sender"
+    private(set) var receiverName: String = "Receiver"
     private var listener: PeerListener?
     private var connection: PeerConnection?
     
@@ -137,18 +137,24 @@ class ChatRoomViewController: BaseViewController {
         }
     }
     
-    func receivedMessage(_ content: Data?) {
+    func receivedMessage(_ content: Data?, messageType: MessageType) {
         guard let text = content?.toString, !text.isEmpty else {
             return
         }
         
-        let message = Message(text: text, owner: .receiver, username: receiverName)
+        let message = Message(text: text,
+                              owner: .receiver,
+                              username: receiverName,
+                              messageType: messageType)
         messages.append(message)
         insertNewMessageCell()
     }
     
     func sentMessage(_ text: String) {
-        let message = Message(text: text, owner: .sender, username: senderName)
+        let message = Message(text: text,
+                              owner: .sender,
+                              username: senderName,
+                              messageType: .message)
         messages.append(message)
         insertNewMessageCell()
     }
@@ -234,7 +240,7 @@ extension ChatRoomViewController {
             navigationItem.rightBarButtonItem = shareButton
         }
         
-        setup()
+        setupSubviews()
     }
     
     override func viewDidLayoutSubviews() {
@@ -269,7 +275,7 @@ extension ChatRoomViewController: PeerConnectionDelegate {
     func received(content: Data?, message: NWProtocolFramer.Message) {
         switch message.type {
         case .message:
-            receivedMessage(content)
+            receivedMessage(content, messageType: message.type)
             
         case .cancelRequest:
             receivedCancelRequest()

@@ -57,6 +57,7 @@
 		13E91DBB2755FD6D006845ED /* DataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E91DBA2755FD6D006845ED /* DataExtension.swift */; };
 		13E91DBD27562322006845ED /* MessageOwner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E91DBC27562322006845ED /* MessageOwner.swift */; };
 		13E91DBF2756323C006845ED /* ChatRoomViewController+Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E91DBE2756323C006845ED /* ChatRoomViewController+Table.swift */; };
+		13E91DC127589108006845ED /* MessageTableViewCell+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E91DC027589108006845ED /* MessageTableViewCell+Layout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +132,7 @@
 		13E91DBA2755FD6D006845ED /* DataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtension.swift; sourceTree = "<group>"; };
 		13E91DBC27562322006845ED /* MessageOwner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageOwner.swift; sourceTree = "<group>"; };
 		13E91DBE2756323C006845ED /* ChatRoomViewController+Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChatRoomViewController+Table.swift"; sourceTree = "<group>"; };
+		13E91DC027589108006845ED /* MessageTableViewCell+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessageTableViewCell+Layout.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -339,6 +341,7 @@
 			isa = PBXGroup;
 			children = (
 				1364D03027526AFE000208D6 /* MessageTableViewCell.swift */,
+				13E91DC027589108006845ED /* MessageTableViewCell+Layout.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -511,6 +514,7 @@
 				13E91DB12754D875006845ED /* NWMessageReceiverDelegate.swift in Sources */,
 				1353F29D27515A7C0036001F /* UIColorExtension.swift in Sources */,
 				1364D02A27525B32000208D6 /* PeerConnection.swift in Sources */,
+				13E91DC127589108006845ED /* MessageTableViewCell+Layout.swift in Sources */,
 				13E91DBD27562322006845ED /* MessageOwner.swift in Sources */,
 				13E91DAF2754D86C006845ED /* NWConnectionStateDelegate.swift in Sources */,
 				1364D05527544B6E000208D6 /* UIButtonExtension.swift in Sources */,

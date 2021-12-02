@@ -11,10 +11,12 @@ struct Message {
     let text: String
     let username: String
     let owner: MessageOwner
+    let messageType: MessageType
     
-    init(text: String, owner: MessageOwner, username: String) {
+    init(text: String, owner: MessageOwner, username: String, messageType: MessageType) {
         self.text = text.withoutWhitespace()
         self.owner = owner
         self.username = username
+        self.messageType = messageType
     }
 }

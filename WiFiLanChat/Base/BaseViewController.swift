@@ -67,7 +67,7 @@ extension BaseViewController {
 }
 
 @objc extension BaseViewController {
-    func setup() {
+    func setupSubviews() {
         embedSubviews()
         setSubviewsConstraints()
     }
