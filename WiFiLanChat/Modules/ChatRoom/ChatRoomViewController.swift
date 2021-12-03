@@ -7,16 +7,24 @@
 
 import UIKit
 import Network
+import Combine
 
 class ChatRoomViewController: BaseViewController {
-    private(set) var messages: [Message] = []
     private(set) var dwgConst = DrawingConstants()
     private(set) var uiConst = UIConstants()
     private(set) var senderName: String = "Sender"
     private(set) var receiverName: String = "Receiver"
     private var listener: PeerListener?
     private var connection: PeerConnection?
+    /// All chat messages will be saved in this variable
+    private(set) var messages: [Message] = [] {
+        didSet {
+            insertNewMessageCell()
+        }
+    }
+    private(set) var subscriptions: Set<AnyCancellable> = []
     
+    // MARK: - UI Properties
     private(set) lazy var tableView: UITableView = {
         let view = UITableView()
         view.dataSource = self
@@ -84,7 +92,6 @@ class ChatRoomViewController: BaseViewController {
     init(connection: PeerConnection) {
         super.init(nibName: nil, bundle: nil)
         self.connection = connection
-        self.connection?.delegate = self
     }
     
     init(host: String) {
@@ -107,7 +114,7 @@ class ChatRoomViewController: BaseViewController {
     }
     
     /// Handles when user closes chat room.
-    func receivedCancelRequest() {
+    func peerCanceledConnection() {
         // Room is closed by host owner.
         if listener == nil {
             showAlert(title: "Host closed",
@@ -131,32 +138,24 @@ class ChatRoomViewController: BaseViewController {
         listener = nil
     }
     
-    func closeChatRoom() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [self] in
+    func closeChatRoom(afterDeadline time: DispatchTime = .now() + 0.5) {
+        DispatchQueue.main.asyncAfter(deadline: time) { [self] in
             dismiss(animated: true, completion: nil)
         }
     }
     
-    func receivedMessage(_ content: Data?, messageType: MessageType) {
-        guard let text = content?.toString, !text.isEmpty else {
-            return
-        }
-        
-        let message = Message(text: text,
-                              owner: .receiver,
+    func received(textMessage: String) {
+        let message = Message(text: textMessage,
                               username: receiverName,
-                              messageType: messageType)
+                              owner: .receiver)
         messages.append(message)
-        insertNewMessageCell()
     }
     
-    func sentMessage(_ text: String) {
-        let message = Message(text: text,
-                              owner: .sender,
+    func sent(textMessage: String) {
+        let message = Message(text: textMessage,
                               username: senderName,
-                              messageType: .message)
+                              owner: .sender)
         messages.append(message)
-        insertNewMessageCell()
     }
     
     func ownerClosedChatRoom() {
@@ -164,7 +163,7 @@ class ChatRoomViewController: BaseViewController {
         let message = "This will close chat in two sides"
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let closeAction = UIAlertAction(title: "Close", style: .destructive) { _ in
-            self.connection?.sendFrame(.cancelRequest)
+            self.connection?.sendFrame(.cancel)
             self.closeChatRoom()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -179,7 +178,7 @@ class ChatRoomViewController: BaseViewController {
         let message = "You cannot join again unless it is free"
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let closeAction = UIAlertAction(title: "Exit", style: .destructive) { _ in
-            self.connection?.sendFrame(.cancelRequest)
+            self.connection?.sendFrame(.cancel)
             self.closeChatRoom()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -187,6 +186,35 @@ class ChatRoomViewController: BaseViewController {
         alert.addAction(cancelAction)
                                         
         present(alert, animated: true, completion: nil)
+    }        
+    
+    func setup() {
+        setupSubviews()
+        setObserverForKeyboardChange()
+        setNavigationItem()
+    }
+    
+    private func addServerMessage(_ text: String) {
+        let message = Message(text: text)
+        messages.append(message)
+    }
+    
+    private func setNavigationItem() {
+        navigationItem.titleView = navigationItemStackView
+        navigationItem.leftBarButtonItem = closeButton
+        // Only listener can share host
+        if listener != nil {
+            navigationItem.rightBarButtonItem = shareButton
+        }
+    }
+    
+    private func setObserverForKeyboardChange() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillChange(notification:)),
+            name: UIResponder.keyboardWillChangeFrameNotification,
+            object: nil
+        )
     }
     
     // MARK: - Actions
@@ -196,6 +224,7 @@ class ChatRoomViewController: BaseViewController {
         let messageBarHeight = messageInputBar.bounds.size.height
         let point = CGPoint(x: messageInputBar.center.x, y: endFrame.origin.y - messageBarHeight/2.0)
         let inset = UIEdgeInsets(top: 0, left: 0, bottom: endFrame.size.height, right: 0)
+        
         UIView.animate(withDuration: 0.15) {
             self.messageInputBar.center = point
             self.tableView.contentInset = inset
@@ -217,6 +246,7 @@ class ChatRoomViewController: BaseViewController {
         let text = "Hey, I created a room to chat. Come join here:\n\(host)"
         let shareVC = UIActivityViewController(activityItems: [text], applicationActivities: nil)
         shareVC.popoverPresentationController?.sourceView = view
+        
         present(shareVC, animated: true, completion: nil)
     }
 }
@@ -225,22 +255,7 @@ class ChatRoomViewController: BaseViewController {
 extension ChatRoomViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillChange(notification:)),
-            name: UIResponder.keyboardWillChangeFrameNotification,
-            object: nil
-        )
-        
-        navigationItem.titleView = navigationItemStackView
-        navigationItem.leftBarButtonItem = closeButton
-        // Only listener can share host
-        if listener != nil {
-            navigationItem.rightBarButtonItem = shareButton
-        }
-        
-        setupSubviews()
+        setup()
     }
     
     override func viewDidLayoutSubviews() {
@@ -253,8 +268,31 @@ extension ChatRoomViewController {
                                        width: size.width,
                                        height: messageBarHeight)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        guard listener != nil else {
+            return
+        }
+        
+        addServerMessage("The host \"\((listener?.name)!)\" is created")
+    }
 }
 
+// MARK: - Message Input Bar
+extension ChatRoomViewController: MessageInputDelegate {
+    func sendButtonClicked(message: String) {
+        guard !message.isEmpty else {
+            return
+        }
+        
+        connection?.send(message)
+        sent(textMessage: message)
+    }
+}
+
+// MARK: - PeerConnectionDelegate
 extension ChatRoomViewController: PeerConnectionDelegate {
     func connectionReady() {
         print("Ready")
@@ -275,17 +313,25 @@ extension ChatRoomViewController: PeerConnectionDelegate {
     func received(content: Data?, message: NWProtocolFramer.Message) {
         switch message.type {
         case .message:
-            receivedMessage(content, messageType: message.type)
+            guard let text = content?.toString, !text.isEmpty else {
+                return
+            }
+            received(textMessage: text)
             
-        case .cancelRequest:
-            receivedCancelRequest()
+        case .cancel:
+            peerCanceledConnection()
+            addServerMessage("\(receiverName) left the host")
             
-        case .invalid:
+        case .join:
+            addServerMessage("\(receiverName) joined the host")
+            
+        default:
             break
         }
     }
 }
 
+// MARK: - PeerListenerDelegate
 extension ChatRoomViewController: PeerListenerDelegate {
     func displayAdvertiseError(_ error: NWError) {
         print(error)
@@ -301,17 +347,6 @@ extension ChatRoomViewController: PeerListenerDelegate {
         }
     }
 }
-
-// MARK: - Message Input Bar
-extension ChatRoomViewController: MessageInputDelegate {
-    func sendButtonClicked(message: String) {
-        guard !message.isEmpty else { return }
-        connection?.send(message)
-        sentMessage(message)
-    }
-}
-
-// MARK: - Table DataSource and Delegate
 
 extension ChatRoomViewController {
     struct UIConstants {

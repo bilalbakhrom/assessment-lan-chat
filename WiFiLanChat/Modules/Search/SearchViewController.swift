@@ -95,14 +95,18 @@ class SearchViewController: BaseViewController {
         guard let connection = connection else {
             return
         }
-        
+        // Should remove instance of connection
         defer { self.connection = nil }
-        
+        // Make chat room instance
         let chatRoomVC = ChatRoomViewController(connection: connection)
+        // Make navigation controller for chat room vc
         let navController: BaseNavigationController = Launcher.makeNavController(rootViewController: chatRoomVC)
         navController.modalPresentationStyle = .fullScreen
         navController.modalTransitionStyle = .flipHorizontal
-        
+        // Prepare connection
+        connection.delegate = chatRoomVC
+        connection.sendFrame(.join)
+        // Display chat room
         present(navController, animated: true, completion: nil)
     }
     

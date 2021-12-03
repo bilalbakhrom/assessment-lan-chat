@@ -25,8 +25,9 @@ extension MessageTableViewCell {
         let maxSize = CGSize(width: 2*(UIScreen.main.bounds.size.width/3), height: CGFloat.greatestFiniteMagnitude)
         let nameHeight = message.owner == .sender ? 0 : (height(forText: message.username, fontSize: 10, maxSize: maxSize) + 4 )
         let messageHeight = height(forText: message.text, fontSize: 17, maxSize: maxSize)
+        let margin: CGFloat = message.owner == .server ? 0 : nameHeight + 24
         
-        return nameHeight + messageHeight + 24
+        return messageHeight + margin
     }
     
     private class func height(forText text: String, fontSize: CGFloat, maxSize: CGSize) -> CGFloat {

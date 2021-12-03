@@ -27,7 +27,7 @@ extension ChatRoomViewController: UITableViewDataSource, UITableViewDelegate {
     func insertNewMessageCell() {
         let indexPath = IndexPath(row: messages.count - 1, section: 0)
         tableView.beginUpdates()
-        tableView.insertRows(at: [indexPath], with: .bottom)
+        tableView.insertRows(at: [indexPath], with: .none)
         tableView.endUpdates()
         tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }

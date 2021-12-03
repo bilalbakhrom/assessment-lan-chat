@@ -9,7 +9,6 @@ import UIKit
 
 class MessageTableViewCell: UITableViewCell {
     private var messageOwner: MessageOwner = .sender
-    private var messageType: MessageType = .invalid
     
     // MARK: - UI Properties
     private(set) lazy var messageLabel: Label = {
@@ -58,43 +57,42 @@ extension MessageTableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        switch messageType {
-        case .message:
-            messageLabel.font = UIFont(name: "Helvetica", size: 17)
-            messageLabel.textColor = .white
+        switch messageOwner {
+        case .sender:
+            updateMessageLabelForSenderReceiver()
+            nameLabel.isHidden = true
+            messageLabel.center = CGPoint(x: bounds.size.width - messageLabel.bounds.size.width/2.0 - 16,
+                                          y: bounds.size.height/2.0)
+            messageLabel.backgroundColor = UIColor(red: 24 / 255, green: 180 / 255, blue: 128 / 255, alpha: 1.0)
             
-            let size = messageLabel.sizeThatFits(CGSize(width: 2 * (bounds.size.width / 3), height: .greatestFiniteMagnitude))
-            messageLabel.frame = CGRect(x: 0, y: 0, width: size.width + 32, height: size.height + 16)
+        case .receiver:
+            updateMessageLabelForSenderReceiver()
+            nameLabel.isHidden = false
+            nameLabel.sizeToFit()
+            nameLabel.center = CGPoint(x: nameLabel.bounds.size.width / 2.0 + 16 + 4,
+                                       y: nameLabel.bounds.size.height/2.0 + 4)
             
-            if messageOwner == .sender {
-                nameLabel.isHidden = true
-                
-                messageLabel.center = CGPoint(x: bounds.size.width - messageLabel.bounds.size.width/2.0 - 16,
-                                              y: bounds.size.height/2.0)
-                messageLabel.backgroundColor = UIColor(red: 24 / 255, green: 180 / 255, blue: 128 / 255, alpha: 1.0)
-            } else {
-                nameLabel.isHidden = false
-                nameLabel.sizeToFit()
-                nameLabel.center = CGPoint(x: nameLabel.bounds.size.width / 2.0 + 16 + 4,
-                                           y: nameLabel.bounds.size.height/2.0 + 4)
-                
-                messageLabel.center = CGPoint(x: messageLabel.bounds.size.width / 2.0 + 16,
-                                              y: messageLabel.bounds.size.height/2.0 + nameLabel.bounds.size.height + 8)
-                messageLabel.backgroundColor = .lightGray
-            }
+            messageLabel.center = CGPoint(x: messageLabel.bounds.size.width / 2.0 + 16,
+                                          y: messageLabel.bounds.size.height/2.0 + nameLabel.bounds.size.height + 8)
+            messageLabel.backgroundColor = .lightGray
             
-        case .cancelRequest:
-            layoutForJoinMessage()
-            
-        default:
-            break
+        case .server:
+            layoutServerMessage()
         }
     }
     
-    func layoutForJoinMessage() {
+    private func updateMessageLabelForSenderReceiver() {
+        messageLabel.font = UIFont(name: "Helvetica", size: 17)
+        messageLabel.textColor = .white
+        
+        let size = messageLabel.sizeThatFits(CGSize(width: 2 * (bounds.size.width / 3),
+                                                    height: .greatestFiniteMagnitude))
+        messageLabel.frame = CGRect(x: 0, y: 0, width: size.width + 32, height: size.height + 16)
+    }
+    
+    func layoutServerMessage() {
         messageLabel.font = UIFont.systemFont(ofSize: 10)
-        messageLabel.textColor = .lightGray
-        messageLabel.backgroundColor = UIColor(red: 247 / 255, green: 247 / 255, blue: 247 / 255, alpha: 1.0)
+        messageLabel.textColor = .systemTeal
         
         let size = messageLabel.sizeThatFits(CGSize(width: 2 * (bounds.size.width / 3), height: .greatestFiniteMagnitude))
         messageLabel.frame = CGRect(x: 0, y: 0, width: size.width + 32, height: size.height + 16)

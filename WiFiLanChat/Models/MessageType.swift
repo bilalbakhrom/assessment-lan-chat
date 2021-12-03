@@ -8,5 +8,7 @@
 enum MessageType: UInt32 {
     case invalid = 0
     case message = 1
-    case cancelRequest = 2
+    case createChatRoom = 2
+    case join = 3
+    case cancel = 4
 }

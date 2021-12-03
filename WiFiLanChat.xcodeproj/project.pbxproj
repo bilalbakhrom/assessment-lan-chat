@@ -268,6 +268,7 @@
 		1353F294275157570036001F /* ChatRoom */ = {
 			isa = PBXGroup;
 			children = (
+				13E91DC6275A1315006845ED /* Models */,
 				1353F2972751576E0036001F /* ChatRoomViewController.swift */,
 				1364D02B27526684000208D6 /* ChatRoomViewController+Layout.swift */,
 				13E91DBE2756323C006845ED /* ChatRoomViewController+Table.swift */,
@@ -371,6 +372,13 @@
 				13E91DB02754D875006845ED /* NWMessageReceiverDelegate.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		13E91DC6275A1315006845ED /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
