@@ -13,6 +13,8 @@ This is chat application uses Apple's **Network** framework. To send/receive mes
 | [NWBrowser](https://developer.apple.com/documentation/network/nwbrowser)    | An object you use to browse for available network services.                    |
 | [NWProtocolFramer](https://developer.apple.com/documentation/network/nwprotocolframer)| A customizable network protocol for defining application message parsers.   |
 | [NWProtocolFramerImplementation](https://developer.apple.com/documentation/network/nwprotocolframerimplementation)| A protocol to which your classes can conform in order to implement a custom framing protocol.|
+| [NWPath](https://developer.apple.com/documentation/network/nwpath) | An object that contains information about the properties of the network that a connection uses, or that are available to your app.|
+| [NWPathMonitor](https://developer.apple.com/documentation/network/nwpathmonitor) | An observer that you use to monitor and react to network changes.|
 
 ___
 
